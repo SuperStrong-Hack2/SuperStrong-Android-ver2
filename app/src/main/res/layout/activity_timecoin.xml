@@ -53,8 +53,8 @@
     <LinearLayout
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:background="#E8E8E8"
+        android:layout_marginTop="100dp"
+        android:background="#FFFFFF"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,17 +75,17 @@
 
             <TextView
                 android:id="@+id/coin_name1"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="ETH"
+                android:text="BTC"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="40dp" />
 
             <TextView
-                android:id="@+id/coin_balance1"
+                android:id="@+id/btc_time"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
@@ -123,17 +123,17 @@
 
             <TextView
                 android:id="@+id/coin_name2"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="BTC"
+                android:text="ETH"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="40dp" />
 
             <TextView
-                android:id="@+id/coin_balance2"
+                android:id="@+id/eth_time"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
@@ -171,17 +171,17 @@
 
             <TextView
                 android:id="@+id/coin_name3"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="ETH"
+                android:text="DOGE"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="40dp" />
 
             <TextView
-                android:id="@+id/coin_balance3"
+                android:id="@+id/doge_time"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
