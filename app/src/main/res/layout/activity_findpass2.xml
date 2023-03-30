@@ -51,6 +51,16 @@
         android:layout_centerHorizontal= "true"
         android:textStyle="bold"
         />
+    <EditText
+        android:id="@+id/email_edit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@+id/remail_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/material_dynamic_neutral90"
+        />
 
 
     <Button
