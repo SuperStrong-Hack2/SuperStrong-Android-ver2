@@ -44,7 +44,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="48dp"
             android:text="비밀번호 변경"
             android:clickable="true"
             android:background="@drawable/border"
@@ -52,7 +52,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="48dp"
             android:text="회원 탈퇴"
             android:clickable="true"
             android:background="@drawable/border"
@@ -60,7 +60,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="48dp"
             android:text="문의 게시판"
             android:clickable="true"
             android:background="@drawable/border"
