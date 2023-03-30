@@ -36,4 +36,67 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:background="#AEAEAE" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="40dp"
+        android:text="To : "
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_line"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/sample_EditText"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:background="#E8E8E8"
+        android:ems="10"
+        android:hint="주소를 입력해주세요."
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="125dp" />
+
+    <Spinner
+        android:src="@drawable/spinner_coin"
+        android:id="@+id/spinner"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/black"
+        android:text="ETH"
+        app:layout_constraintTop_toBottomOf="@+id/sample_EditText"
+        tools:layout_editor_absoluteX="106dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/edit_coin"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="#E8E8E8"
+        android:ems="10"
+        android:hint="전송할 수량을 입력하세요."
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="106dp" />
+
+    <android.widget.Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:textColor="@color/white"
+        android:text="다음"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="450dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
