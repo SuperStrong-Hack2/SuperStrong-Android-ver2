@@ -1,5 +1,4 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,6 +7,7 @@
     <!-- 메타머스크 이용약관 동의 -->
 
     <!-- 개인정보 수집 및 이용 동의 -->
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -51,6 +51,7 @@
         android:layout_centerHorizontal= "true"
         android:textStyle="bold"
         />
+
 
     <EditText
         android:id="@+id/confirm_button"
