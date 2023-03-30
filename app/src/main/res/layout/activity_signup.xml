@@ -1,7 +1,7 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- 이용약관 -->
 
@@ -31,6 +31,13 @@
             android:textSize="24dp" />
 
     </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:id="@+id/toolbar_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignBottom="@+id/toolbar"
+        android:background="#AEAEAE" />
 
     <TextView
         android:id="@+id/notice"
