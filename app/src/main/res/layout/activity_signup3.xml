@@ -84,6 +84,7 @@
         android:layout_centerHorizontal= "true"
         android:textStyle="bold"
         />
+
     <EditText
         android:id="@+id/email_edit"
         android:layout_width="match_parent"
@@ -92,7 +93,9 @@
         android:layout_below="@+id/check2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@color/material_dynamic_neutral90"
+        android:background="@drawable/round_button_gray"
+        android:hint="인증코드를 입력하세요"
+        android:gravity="center"
         />
 
 

@@ -21,14 +21,14 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Username"
             android:text="@={viewModel.username}"
             />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Password"
             android:inputType="textPassword"
             android:text="@={viewModel.password}"
@@ -50,8 +50,8 @@
             android:id="@+id/SignupBtn"
             android:background="@android:color/transparent"
             android:textColor="@android:color/black"
-            android:minWidth="10dp"
-            android:minHeight="10dp" />
+            android:minWidth="50dp"
+            android:minHeight="50dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -60,8 +60,8 @@
             android:id="@+id/FindPassBtn"
             android:background="@android:color/transparent"
             android:textColor="@android:color/black"
-            android:minWidth="10dp"
-            android:minHeight="10dp" />
+            android:minWidth="50dp"
+            android:minHeight="50dp" />
 
     </LinearLayout>
 </layout>

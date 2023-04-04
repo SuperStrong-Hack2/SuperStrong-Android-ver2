@@ -21,15 +21,18 @@ class LoginActivity : AppCompatActivity() {
         LoginButton.setOnClickListener {
             val intent = Intent(this, WalletActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         SignupButton.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
+            finish()
         }
         PassFindButton.setOnClickListener {
             val intent = Intent(this, FindPassActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
