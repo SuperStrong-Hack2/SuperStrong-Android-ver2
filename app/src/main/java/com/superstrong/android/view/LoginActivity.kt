@@ -1,37 +1,34 @@
 package com.superstrong.android.view
 
-
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.superstrong.android.R
+import com.superstrong.android.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val LoginButton : Button = findViewById(R.id.LoginBtn)
-        // findViewById 대신에 ViewBinding을 사용한다
-        val SignupButton : Button = findViewById(R.id.SignupBtn)
-        val PassFindButton : Button = findViewById(R.id.FindPassBtn)
-
-        LoginButton.setOnClickListener {
+        binding.loginBtn.setOnClickListener {
             val intent = Intent(this, WalletActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        SignupButton.setOnClickListener {
+        binding.signupBtn.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
-        PassFindButton.setOnClickListener {
+
+        binding.findPassBtn.setOnClickListener {
             val intent = Intent(this, FindPassActivity::class.java)
             startActivity(intent)
         }
     }
-
 }
