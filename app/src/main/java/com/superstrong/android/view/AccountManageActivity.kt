@@ -4,15 +4,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import com.superstrong.android.R
+import android.content.Intent
+import androidx.databinding.DataBindingUtil
+
 
 class AccountManageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_manage)
-        val chpasswd = findViewById<TextView>(R.id.manage_chpass)
-        val intent = Intent(this,)
-        chpasswd.setOnClickListener {
+        val chpass = findViewById<TextView>(R.id.manage_chpass)
+        val intentChpass = Intent(this,ChpasswdActivity::class.java)
 
+        val withdrawal = findViewById<TextView>(R.id.manage_withdrawal)
+        val intentWithdrawal = Intent(this,ChpasswdActivity::class.java)
+
+        val qna = findViewById<TextView>(R.id.manage_qna)
+        val intentQna = Intent(this,ChpasswdActivity::class.java)
+
+        chpass.setOnClickListener {
+            startActivity(intentChpass)
+        }
+        withdrawal.setOnClickListener {
+            startActivity(intentWithdrawal)
+        }
+        qna.setOnClickListener {
+            startActivity(intentQna)
         }
     }
 }
