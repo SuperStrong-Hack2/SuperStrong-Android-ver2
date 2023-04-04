@@ -2,6 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <variable
+            name="viewModel"
+            type="com.superstrong.android.viewmodel.LoginViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,11 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/dog"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="30dp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
+            android:text="@={viewModel.username}"
             />
 
         <EditText
@@ -26,22 +31,23 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
-            android:layout_marginBottom="50dp"/>
-
+            android:text="@={viewModel.password}"
+            android:layout_marginBottom="50dp" />
 
         <android.widget.Button
             android:background="@drawable/round_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
+            android:id="@+id/LoginBtn"
             android:layout_marginBottom="30dp"
             android:textColor="#FFFFFF"
-            android:onClick="login"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="회원가입"
+            android:id="@+id/SignupBtn"
             android:background="@android:color/transparent"
             android:textColor="@android:color/black"
             android:minWidth="10dp"
@@ -51,6 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="비밀번호 찾기"
+            android:id="@+id/FindPassBtn"
             android:background="@android:color/transparent"
             android:textColor="@android:color/black"
             android:minWidth="10dp"
