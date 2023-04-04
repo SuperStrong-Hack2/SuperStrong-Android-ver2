@@ -70,7 +70,7 @@
         android:onClick="@{() -> viewModel.goToSignUpActivity()}"
         android:text="메일을 받지 못했나요?"
         android:background="@android:color/transparent"
-        android:textColor="@color/material_dynamic_neutral60"
+        android:textColor="#d9d9d9"
         android:minWidth="0dp"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal= "true"
