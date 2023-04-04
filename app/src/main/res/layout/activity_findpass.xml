@@ -61,7 +61,7 @@
         android:layout_below="@+id/notice"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="@color/material_dynamic_neutral90"
+        android:background="@drawable/edit_text"
     />
     <android.widget.Button
         android:background="@drawable/round_button"

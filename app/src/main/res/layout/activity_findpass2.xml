@@ -59,7 +59,7 @@
         android:layout_below="@+id/remail_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@color/material_dynamic_neutral90"
+        android:background="@drawable/edit_text"
         />
 
 
