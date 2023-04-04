@@ -12,6 +12,12 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
+            android:name=".view.AccountManageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.AccountManage"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
