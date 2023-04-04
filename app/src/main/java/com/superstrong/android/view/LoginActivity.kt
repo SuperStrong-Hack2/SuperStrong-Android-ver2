@@ -27,12 +27,10 @@ class LoginActivity : AppCompatActivity() {
         SignupButton.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
-            finish()
         }
         PassFindButton.setOnClickListener {
             val intent = Intent(this, FindPassActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 

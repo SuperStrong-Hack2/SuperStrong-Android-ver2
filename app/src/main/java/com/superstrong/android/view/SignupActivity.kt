@@ -17,12 +17,10 @@ class SignupActivity : AppCompatActivity() {
         NextButton.setOnClickListener {
             val intent = Intent(this, SignupActivity2::class.java)
             startActivity(intent)
-            finish()
         }
         CancelButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
