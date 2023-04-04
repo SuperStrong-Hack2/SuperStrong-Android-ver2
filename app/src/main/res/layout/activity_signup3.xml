@@ -93,7 +93,7 @@
         android:layout_below="@+id/check2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/round_button_gray"
+        android:background="@drawable/edit_text"
         android:hint="인증코드를 입력하세요"
         android:gravity="center"
         />
