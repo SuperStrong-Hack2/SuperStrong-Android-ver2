@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import com.superstrong.android.R
+import kotlin.reflect.KMutableProperty1
 
 class WalletActivity : AppCompatActivity() {
 
@@ -13,6 +15,9 @@ class WalletActivity : AppCompatActivity() {
 //    private var mBinding: PaymentActivityMainBinding? = null
 //    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
 //    private val binding get() = mBinding!!
+
+
+    private var mViewPager: ViewPager? = null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +43,7 @@ class WalletActivity : AppCompatActivity() {
             val intent = Intent(this, SwapActivity::class.java)
             startActivity(intent)
         }
+
     }
 
 }
