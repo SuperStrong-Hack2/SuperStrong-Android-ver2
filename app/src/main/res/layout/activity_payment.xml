@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.PaymentActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
@@ -102,6 +103,7 @@
         tools:layout_editor_absoluteX="106dp" />
 
     <android.widget.Button
+        android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_button"
@@ -109,7 +111,7 @@
         android:text="다음"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
+        tools:ignore="DuplicateIds,MissingConstraints"
         tools:layout_editor_absoluteY="450dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
