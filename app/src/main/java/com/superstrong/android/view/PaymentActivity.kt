@@ -7,17 +7,23 @@ import androidx.appcompat.app.AppCompatActivity
 import com.superstrong.android.R
 
 class PaymentActivity : AppCompatActivity() {
+
+//    // 전역 변수로 바인딩 객체 선언
+//    private var mBinding: PaymentActivityMainBinding? = null
+//    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
+//    private val binding get() = mBinding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-        // val NextButton : Button = findViewById(R.id.next_button);
+        val NextButton : Button = findViewById(R.id.next_button);
         // findViewById 대신에 ViewBinding을 사용한다
 
-//        NextButton.setOnClickListener {
-//            val intent = Intent(this, PaymentActivity2::class.java)
-//            startActivity(intent)
-//        }
+        NextButton.setOnClickListener {
+            val intent = Intent(this, PaymentActivity2::class.java)
+            startActivity(intent)
+        }
     }
 
 }

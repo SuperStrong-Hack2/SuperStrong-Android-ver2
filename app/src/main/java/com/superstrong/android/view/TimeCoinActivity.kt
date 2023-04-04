@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.superstrong.android.R
 
-class PaymentActivity2 : AppCompatActivity() {
+class TimeCoinActivity : AppCompatActivity() {
 
 //    // 전역 변수로 바인딩 객체 선언
 //    private var mBinding: PaymentActivityMainBinding? = null
@@ -17,13 +17,13 @@ class PaymentActivity2 : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_payment2)
+        setContentView(R.layout.activity_timecoin)
 
-        val NextButton : Button = findViewById(R.id.next_button);
+        val NextButton : Button = findViewById(R.id.next_button)
         // findViewById 대신에 ViewBinding을 사용한다
 
         NextButton.setOnClickListener {
-            val intent = Intent(this, PaymentActivity3::class.java)
+            val intent = Intent(this, WalletActivity::class.java)
             startActivity(intent)
         }
     }
