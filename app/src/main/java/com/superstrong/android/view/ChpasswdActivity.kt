@@ -1,5 +1,6 @@
 package com.superstrong.android.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -19,6 +20,10 @@ class ChpasswdActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ChpasswdVModel::class.java)
         binding.viewModel = viewModel
 
+        binding.btnBack.setOnClickListener{
+            viewModel.back()
+        }
+
 
         viewModel.stage.observe(this, Observer {
             var transaction = supportFragmentManager.beginTransaction()
@@ -34,6 +39,13 @@ class ChpasswdActivity : AppCompatActivity() {
             }
             else
                 finish()
+        })
+        viewModel.done.observe(this, Observer {
+            if(it) {
+                val intentLogin = Intent(this,LoginActivity::class.java)
+                startActivity(intentLogin)
+                finish()
+            }
         })
     }
 }

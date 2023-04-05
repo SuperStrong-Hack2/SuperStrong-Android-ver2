@@ -24,8 +24,7 @@ class Chpasswd1Fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentChpasswd1Binding.inflate(inflater,container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
