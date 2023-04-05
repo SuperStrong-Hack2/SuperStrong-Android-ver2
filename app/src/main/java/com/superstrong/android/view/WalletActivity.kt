@@ -1,33 +1,40 @@
 package com.superstrong.android.view
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import com.superstrong.android.R
-import kotlin.reflect.KMutableProperty1
+// import com.superstrong.android.databinding.ActivityWalletBinding
+import com.superstrong.android.viewmodel.TabFragmentAdapter
 
 class WalletActivity : AppCompatActivity() {
 
-//    // 전역 변수로 바인딩 객체 선언
-//    private var mBinding: PaymentActivityMainBinding? = null
-//    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
-//    private val binding get() = mBinding!!
-
-
-    private var mViewPager: ViewPager? = null
+//    private lateinit var binding: ActivityWalletBinding
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        binding = ActivityWalletBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
         setContentView(R.layout.activity_wallet)
 
-        // findViewById 대신에 ViewBinding을 사용한다
-        val PaymentBtn : ImageView = findViewById(R.id.img_payment)
-        val TimeCoinBtn : ImageView = findViewById(R.id.img_timecoin)
-        val SwapBtn : ImageView = findViewById(R.id.img_swap)
+        val pagerAdapter = TabFragmentAdapter(supportFragmentManager)
+
+        val pager = findViewById<ViewPager>(R.id.viewPager)
+        pager.adapter = pagerAdapter
+
+        val tab = findViewById<TabLayout>(R.id.tab_layout1)
+        tab.setupWithViewPager(pager)
+
+        val PaymentBtn : ImageView = findViewById(R.id.imgPayment)
+        val TimeCoinBtn : ImageView = findViewById(R.id.imgTimecoin)
+        val SwapBtn : ImageView = findViewById(R.id.imgSwap)
 
         PaymentBtn.setOnClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
@@ -43,6 +50,23 @@ class WalletActivity : AppCompatActivity() {
             val intent = Intent(this, SwapActivity::class.java)
             startActivity(intent)
         }
+
+//
+//        binding.imgPayment.setOnClickListener {
+//            Log.d("태그", "송금 클릭했다")
+//            val intent = Intent(this, PaymentActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        binding.imgTimecoin.setOnClickListener {
+//            val intent = Intent(this, TimeCoinActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        binding.imgSwap.setOnClickListener {
+//            val intent = Intent(this, SwapActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 

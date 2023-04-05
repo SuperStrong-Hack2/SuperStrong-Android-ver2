@@ -25,6 +25,7 @@ class TimeCoinActivity : AppCompatActivity() {
         NextButton.setOnClickListener {
             val intent = Intent(this, WalletActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
