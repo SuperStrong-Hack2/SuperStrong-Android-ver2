@@ -11,6 +11,11 @@ class ChpasswdVModel() : ViewModel(){
     var model = AcctManModel(jwt)
     var stage = MutableLiveData<Int>(1)
     var samePass = MutableLiveData<Boolean>(false)
+    var done = MutableLiveData<Boolean>(false)
+
+    fun back(){
+        stage.value = stage.value!! - 1
+    }
     fun checkCurrentPassword(pass:String){
         val ret = model.checkPassword(pass)
         wrongPasswd.value = !ret
@@ -24,5 +29,8 @@ class ChpasswdVModel() : ViewModel(){
             if(ret)
                 stage.value=3
         }
+    }
+    fun relogin(){
+        done.value=true
     }
 }

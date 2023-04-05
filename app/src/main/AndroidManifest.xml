@@ -23,6 +23,8 @@
             android:name=".view.WalletActivity"
             android:exported="true">
 
+
+
         </activity>
         <activity
             android:name=".view.PaymentActivity"
@@ -88,6 +90,10 @@
 
         </activity>
         <activity android:name=".view.ChpasswdActivity"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".view.AccountManageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

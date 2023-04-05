@@ -7,11 +7,19 @@
         <deviceKey>
           <Key>
             <type value="SERIAL_NUMBER" />
+<<<<<<< HEAD
             <value value="127.0.0.1:62001" />
+=======
+            <value value="localhost:5555" />
+>>>>>>> origin/master
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
+<<<<<<< HEAD
     <timeTargetWasSelectedWithDropDown value="2023-04-04T04:42:04.141888900Z" />
+=======
+    <timeTargetWasSelectedWithDropDown value="2023-04-05T05:25:54.956581300Z" />
+>>>>>>> origin/master
   </component>
 </project>
