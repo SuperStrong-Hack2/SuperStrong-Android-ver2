@@ -33,12 +33,6 @@ class SignupVModel : ViewModel() {
     }
 
     fun signupRequst(id:String, pass1:String, pass2:String, mail:String, jumin:String, phone:String){
-        Log.d("aaaaaaaaaaaa",id)
-        Log.d("aaaaaaaaaaaa",pass1)
-        Log.d("aaaaaaaaaaaa",pass2)
-        Log.d("aaaaaaaaaaaa",mail)
-        Log.d("aaaaaaaaaaaa",jumin)
-        Log.d("aaaaaaaaaaaa",phone)
 
         if(id =="" || pass1 == "" || pass2 == "" || mail == "" || jumin == "" || phone == "")
             error_code.value=5
