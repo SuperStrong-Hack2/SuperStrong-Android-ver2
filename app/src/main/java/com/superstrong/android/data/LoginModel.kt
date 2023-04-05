@@ -20,7 +20,7 @@ data class User(
 
 interface BackendApiService {
     @POST("api/login") // 엔드포인트 지정
-    fun login(@Body user: User): Call<Void> // 요청 바디에 User 객체 전달
+    fun login(@Body user: User): Call<String> // 요청 바디에 User 객체 전달
 }
 
 object RetrofitClient {
@@ -33,6 +33,6 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
-        retrofit.create(BackendApiService::class.java)
+        retrofit.create(backendApiService::class.java)
     }
 }

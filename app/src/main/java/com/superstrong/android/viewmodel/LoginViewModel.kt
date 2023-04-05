@@ -21,8 +21,8 @@ class LoginViewModel : ViewModel() {
 
         val call = RetrofitClient.backendApiService.login(user) // POST 요청 보내기
 
-        call.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.isSuccessful) {
 
                     val responseBody = response.body()?.toString()
@@ -39,7 +39,7 @@ class LoginViewModel : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
+            override fun onFailure(call: Call<String>, t: Throwable) {
                 Toast.makeText(context, "통신 실패", Toast.LENGTH_SHORT).show()
 
             }
