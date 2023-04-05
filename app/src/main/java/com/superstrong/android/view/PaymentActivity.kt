@@ -23,21 +23,6 @@ class PaymentActivity : AppCompatActivity() {
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener(MyNavigationListener(this))
 
-//        val NextButton : Button = findViewById(R.id.next_button);
-//        // findViewById 대신에 ViewBinding을 사용한다
-//
-//        val BackButton : ImageView = findViewById(R.id.btn_back);
-//
-//        NextButton.setOnClickListener {
-//            val intent = Intent(this, PaymentActivity2::class.java)
-//            startActivity(intent)
-//        }
-//
-//        BackButton.setOnClickListener {
-//            val intent = Intent(this, PaymentActivity2::class.java)
-//            startActivity(intent)
-//        }
-
         // 툴바 뒤로가기 버튼
         binding.btnBack.setOnClickListener {
             val intent = Intent(this, WalletActivity::class.java)

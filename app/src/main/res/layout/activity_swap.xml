@@ -134,39 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/balance2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:text="잔고:"
-                android:textColor="#000000"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="@+id/balance"
-                app:layout_constraintEnd_toStartOf="@+id/balance"
-                app:layout_constraintTop_toTopOf="@+id/balance" />
-
-            <TextView
-                android:id="@+id/balance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="25.000000"
-                android:textColor="#000000"
-                android:textSize="24dp" />
-
-            <TextView
-                android:id="@+id/coin_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="ETC"
-                android:textColor="#000000"
-                android:textSize="26dp" />
-
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <android.widget.Button
             android:id="@+id/confirm_button"
