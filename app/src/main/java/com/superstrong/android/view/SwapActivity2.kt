@@ -6,23 +6,29 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.superstrong.android.R
+import com.superstrong.android.databinding.ActivitySwap2Binding
+import com.superstrong.android.databinding.ActivitySwapBinding
 
 class SwapActivity2 : AppCompatActivity() {
 
-//    // 전역 변수로 바인딩 객체 선언
-//    private var mBinding: PaymentActivityMainBinding? = null
-//    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
-//    private val binding get() = mBinding!!
+    private lateinit var binding: ActivitySwap2Binding
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_swap2)
 
-        val NextButton : Button = findViewById(R.id.confirm_button)
-        // findViewById 대신에 ViewBinding을 사용한다
+        binding = ActivitySwap2Binding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        NextButton.setOnClickListener {
+        // 툴바 뒤로가기 버튼
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(this, SwapActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.confirmButton.setOnClickListener {
             val intent = Intent(this, WalletActivity::class.java)
             startActivity(intent)
             finish()
