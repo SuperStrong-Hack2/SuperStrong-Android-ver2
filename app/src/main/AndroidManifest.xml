@@ -12,12 +12,12 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
-            android:name=".view.WithdrawalActivity"
+            android:name=".view.SplashActivity"
             android:exported="true" >
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".view.WalletActivity"
@@ -75,6 +75,11 @@
         <activity
         android:name=".view.SignupActivity4"
         android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".view.WithdrawalActivity"
+            android:exported="true">
 
         </activity>
         <activity

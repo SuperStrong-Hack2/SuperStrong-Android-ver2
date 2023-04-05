@@ -1,6 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.superstrong.android.viewmodel.LoginViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +28,7 @@
             android:textColorHint="#d9d9d9"
             android:layout_marginTop="50dp"
             android:background="@drawable/edit_text"
-            />
+            android:text="@{viewModel.username}" />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -34,7 +39,8 @@
             android:textColorHint="#d9d9d9"
             android:background="@drawable/edit_text"
             android:inputType="textPassword"
-            android:layout_marginBottom="50dp" />
+            android:layout_marginBottom="50dp"
+            android:text="@{viewModel.password}" />
 
         <android.widget.Button
             android:id="@+id/loginBtn"
@@ -43,8 +49,7 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:layout_marginBottom="30dp"
-            android:textColor="#FFFFFF"
-            />
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/signupBtn"
