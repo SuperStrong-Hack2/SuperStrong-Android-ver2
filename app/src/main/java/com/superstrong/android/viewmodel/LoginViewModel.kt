@@ -22,9 +22,13 @@ class LoginViewModel : ViewModel() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()?.toString()
-                    // 요청 성공 처리
+                    if (responseBody == "Login Failed") {
+                        Toast.makeText(context, "로그인이 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        // 로그인 성공 시 처리할 코드
+                    } else {
+
+                    }
                 } else {
-                    // 요청 실패 처리
                     val errorBody = response.errorBody()?.toString()
                     Toast.makeText(context, "로그인이 실패했습니다.", Toast.LENGTH_SHORT).show()
                 }
@@ -32,9 +36,6 @@ class LoginViewModel : ViewModel() {
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Toast.makeText(context, "통신 실패", Toast.LENGTH_SHORT).show()
-                // 통신 실패 처리
             }
         })
-    }
-
-}
+    }}
