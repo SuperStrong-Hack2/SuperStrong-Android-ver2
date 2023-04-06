@@ -11,13 +11,8 @@ import androidx.lifecycle.Observer
 import com.superstrong.android.databinding.FragmentSignup3Binding
 import com.superstrong.android.viewmodel.SignupVModel
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Signup3Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Signup3Fragment : Fragment() {
 
+class Signup3Fragment : Fragment() {
     private var _binding: FragmentSignup3Binding? = null
     // This property is only valid between onCreateView and
 // onDestroyView.

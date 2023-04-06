@@ -54,17 +54,6 @@ class SignupActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener{
             viewModel.back()
         }
-
-        /*val NextButton : Button = findViewById(R.id.confirm_button)
-        val CancelButton: Button = findViewById(R.id.cancel_button)
-        NextButton.setOnClickListener {
-            val intent = Intent(this, SignupActivity2::class.java)
-            startActivity(intent)
-        }
-        CancelButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }*/
     }
 
 }
