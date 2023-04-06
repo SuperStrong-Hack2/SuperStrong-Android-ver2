@@ -62,5 +62,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, FindPassActivity::class.java)
             startActivity(intent)
         }
+
     }
 }
