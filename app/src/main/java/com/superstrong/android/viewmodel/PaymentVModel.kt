@@ -1,16 +1,12 @@
 package com.superstrong.android.viewmodel
 
-import RetrofitInstance
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.superstrong.android.data.PayInfo
-import com.superstrong.android.data.RetrofitClient
-import com.superstrong.android.data.RetrofitApiService
-import com.superstrong.android.data.User
-import com.superstrong.android.view.FindPassActivity
+import com.superstrong.android.data.RetrofitInstance
 import com.superstrong.android.view.PaymentActivity2
 import retrofit2.Call
 import retrofit2.Callback

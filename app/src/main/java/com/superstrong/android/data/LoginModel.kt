@@ -13,26 +13,11 @@ import com.google.gson.GsonBuilder
 import com.superstrong.android.databinding.ActivityLoginBinding
 import com.superstrong.android.view.LoginActivity
 
+import com.google.gson.annotations.SerializedName
+
 data class User(
+    @SerializedName("id")
     val id: String,
+    @SerializedName("pw")
     val pw: String
 )
-
-//interface BackendApiService {
-//    @POST("api/login") // 엔드포인트 지정
-//    fun login(@Body user: User): Call<String> // 요청 바디에 User 객체 전달
-//}
-
-object RetrofitClient {
-    private const val BASE_URL = "http://localhost:8080/" // 백엔드의 기본 URL을 입력해주세요
-
-    val backendApiService: BackendApiService by lazy {
-        val gson: Gson = GsonBuilder().create()
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-
-        retrofit.create(backendApiService::class.java)
-    }
-}
