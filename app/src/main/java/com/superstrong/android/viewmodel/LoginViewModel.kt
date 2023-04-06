@@ -10,6 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.Intent
 import android.util.Log
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.superstrong.android.view.FindPassActivity
 import com.superstrong.android.view.WalletActivity
@@ -24,7 +25,9 @@ class LoginViewModel : ViewModel() {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()?.toString()
-                    if (responseBody == "Login Failed") {
+                    val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
+                    Log.i("ttt","reponse:"+responseBody)
+                    if (jsonObject.get("token").asString == "login failed") {
                         // ---------------------로그인 실패 시 처리할 코드---------------------
                         Toast.makeText(context, "로그인이 실패했습니다.", Toast.LENGTH_SHORT).show()
                     } else {
