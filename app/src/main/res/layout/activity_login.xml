@@ -15,10 +15,10 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="260dp"
             android:layout_height="227dp"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/Logo" />
+            android:src="@drawable/logo" />
 
         <EditText
             android:id="@+id/usernameEditText"
