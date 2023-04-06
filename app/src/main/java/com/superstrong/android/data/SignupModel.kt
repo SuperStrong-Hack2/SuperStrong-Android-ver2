@@ -1,27 +1,39 @@
 package com.superstrong.android.data
 
-class SignupModel {
-    var myid:String =""
-    fun signupRequst(id:String, pass1:String, pass2:String, mail:String, jumin:String, phone:String):Int{
-        if(id == "admin")
-            return 2
-        else if(pass1 != pass2)
-            return 3
-        else if(id == "testid")
-            return 4
-        else {
-            myid=id
-            return 1
-        }
-        //return 1// 정상
-        //return 2 // 아이디 중복
-        //return 3 // 비밀번호확인 불일치
-        //return 4 // 인증 대기중인 유저
-    }
-    fun authCheck(authcode:String):Int{
-        if(authcode == "123456")
-            return 1
-        else
-            return 0
-    }
-}
+
+import com.google.gson.annotations.SerializedName
+
+data class SignUpRequestBody(
+    @SerializedName("id")
+    val id:String,
+    @SerializedName("pw")
+    val pw:String,
+    @SerializedName("email")
+    val email:String,
+    @SerializedName("ssn")
+    val ssn:String,
+    @SerializedName("phone_num")
+    val phone_num: String
+)
+
+data class SignUpResponseBody(
+    @SerializedName("res")
+    val result: String,
+)
+
+data class authCode(
+    @SerializedName("code")
+    var code:String
+)
+
+data class UserData(
+    @SerializedName("res") // 맞으면 1 틀리면 0
+    var result: String,
+    @SerializedName("private_key") // 거래시 사용할 키
+    var key:String,
+    @SerializedName("pub_address") // 지갑 주소
+    var pubAddress:String,
+    @SerializedName("id") // 사용자 id
+    var id:String
+)
+

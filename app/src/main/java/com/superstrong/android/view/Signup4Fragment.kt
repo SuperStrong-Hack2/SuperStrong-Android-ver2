@@ -1,12 +1,12 @@
 package com.superstrong.android.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.superstrong.android.R
 import com.superstrong.android.databinding.FragmentSignup4Binding
 import com.superstrong.android.viewmodel.SignupVModel
 
@@ -30,6 +30,14 @@ class Signup4Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.welcome.text="환영합니다. " + vmodel.myid + "님"
+        val sharedPref = activity?.getSharedPreferences("strong", Context.MODE_PRIVATE)
+        with(sharedPref!!.edit()) {
+            putString("id", vmodel.myid)
+            putString("key", vmodel.myKey)
+            putString("pub_ad", vmodel.pubAd)
+            apply()
+        }
         binding.confirmButton.setOnClickListener{
             vmodel.relogin()
         }

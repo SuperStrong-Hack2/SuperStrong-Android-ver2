@@ -36,13 +36,20 @@ class Signup3Fragment : Fragment() {
             vmodel.relogin()
         }
         binding.confirmButton.setOnClickListener{
-            vmodel.authRequest(binding.emailEdit.text.toString())
+            vmodel.authPost(binding.emailEdit.text.toString())
         }
 
-        vmodel.authfail.observe(viewLifecycleOwner, Observer {
-            if(vmodel.authfail.value != 0) {
-                val myToast = Toast.makeText(getActivity(), "코드가 일치하지 않습니다.", Toast.LENGTH_SHORT)
+        vmodel.auth_fail.observe(viewLifecycleOwner, Observer {
+            if(vmodel.auth_fail.value == 0) {
+                val myToast = Toast.makeText(activity, "코드가 일치하지 않습니다.", Toast.LENGTH_SHORT)
                 myToast.show()
+            }
+            else if(vmodel.auth_fail.value == -1) {
+                val myToast = Toast.makeText(activity, "서버와 통신 과정에서 문제가 발생했습니다..", Toast.LENGTH_SHORT)
+                myToast.show()
+            }
+            else if(vmodel.auth_fail.value != 1) {
+                vmodel.relogin()
             }
         })
     }

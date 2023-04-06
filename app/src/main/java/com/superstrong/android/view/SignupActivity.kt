@@ -24,7 +24,7 @@ class SignupActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(SignupVModel::class.java)
         binding.viewModel = viewModel
 
-        viewModel.stage.observe(this, Observer {
+        viewModel.stage.observe(this, Observer {//회원가입 단계
             var transaction = supportFragmentManager.beginTransaction()
             if (it == 1) {
                 transaction.replace(R.id.frameLayout, Signup1Fragment())

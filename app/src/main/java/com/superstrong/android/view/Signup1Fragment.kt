@@ -31,7 +31,7 @@ class Signup1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vmodel.unchecked.observe(viewLifecycleOwner, Observer {
+        vmodel.unchecked.observe(viewLifecycleOwner, Observer {//개인정보 수집 동의
             if(it)
                 binding.unchecked.visibility = View.VISIBLE
             else
@@ -44,10 +44,10 @@ class Signup1Fragment : Fragment() {
                 binding.metamaskCheckbox.isChecked=true
             }
         }
-        binding.cancelButton.setOnClickListener{
+        binding.cancelButton.setOnClickListener{ //가입 취소
             vmodel.relogin()
         }
-        binding.confirmButton.setOnClickListener{
+        binding.confirmButton.setOnClickListener{ //가입 진행
             vmodel.all_checked(binding.privacyCheckbox.isChecked, binding.metamaskCheckbox.isChecked)
         }
     }
