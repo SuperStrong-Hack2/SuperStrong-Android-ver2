@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.superstrong.android.R
 import com.superstrong.android.databinding.ActivityLoginBinding
 import com.superstrong.android.viewmodel.LoginViewModel
 import android.text.TextWatcher

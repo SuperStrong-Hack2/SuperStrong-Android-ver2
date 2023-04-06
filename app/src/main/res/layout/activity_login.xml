@@ -11,28 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="70dp"
+        android:padding="30dp"
         android:gravity="center">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/dog"
-            android:layout_marginBottom="30dp" />
+            android:layout_height="227dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/Logo" />
 
         <EditText
             android:id="@+id/usernameEditText"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Username"
             android:textColorHint="#d9d9d9"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="0dp"
             android:background="@drawable/edit_text"
             android:text="@{viewModel.username}" />
 
         <EditText
             android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:hint="Password"
