@@ -18,10 +18,10 @@ data class User(
     val pw: String
 )
 
-interface BackendApiService {
-    @POST("api/login") // 엔드포인트 지정
-    fun login(@Body user: User): Call<String> // 요청 바디에 User 객체 전달
-}
+//interface BackendApiService {
+//    @POST("api/login") // 엔드포인트 지정
+//    fun login(@Body user: User): Call<String> // 요청 바디에 User 객체 전달
+//}
 
 object RetrofitClient {
     private const val BASE_URL = "http://localhost:8080/" // 백엔드의 기본 URL을 입력해주세요

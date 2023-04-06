@@ -1,31 +1,19 @@
-package com.superstrong.android.data
-
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.superstrong.android.data.BackendApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-//class RetrofitInstance {
-  //  var retrofitInstance: RetrofitInstance? = null
- //   var retrofitService: RetrofitServiceApi? = null
+object RetrofitInstance {
+    private const val BASE_URL = "http://localhost:8080/" // 백엔드의 기본 URL을 입력해주세요
 
-    // BaseUrl등록
-//    private val BASE_URL = "http://localhost:8080/"
+    val backendApiService: BackendApiService by lazy {
+        val gson: Gson = GsonBuilder().create()
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
 
-  //  private fun RetrofitInstance() {
-  //      val retrofit = Retrofit.Builder()
-  //          .baseUrl(BASE_URL) // Json을 변환해줄 Gson변환기 등록
-  //          .addConverterFactory(GsonConverterFactory.create())
-  //          .build()
-   //     retrofitService = retrofit.create(RetrofitServiceApi::class.java)
-   // }
-
-//    fun getRetrofitInstance(): RetrofitInstance? { // 싱글톤
-//        if (retrofitInstance == null) {
-//            retrofitInstance = RetrofitInstance()
-//        }
-//        return retrofitInstance
-//    }
-
-//    fun getRetrofitService(): RetrofitServiceApi? {
-//        return retrofitService
-//    }
-//}
+        retrofit.create(backendApiService::class.java)
+    }
+}
