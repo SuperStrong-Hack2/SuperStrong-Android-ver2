@@ -2,6 +2,8 @@ package com.superstrong.android.data
 
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 data class SignUpRequestBody(
     @SerializedName("id")
@@ -36,4 +38,11 @@ data class UserData(
     @SerializedName("id") // 사용자 id
     var id:String
 )
+
+class Repository {
+    val retrofitService = RetrofitInstance.backendApiService
+    suspend fun signupRequest(body: SignUpRequestBody) = withContext(Dispatchers.IO) {
+        return@withContext retrofitService.signUp(body)
+    }
+}
 

@@ -3,7 +3,12 @@ package com.superstrong.android.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.superstrong.android.data.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -12,6 +17,7 @@ class SignupVModel : ViewModel() {
     var done = MutableLiveData<Boolean>(false) //signup done
     var unchecked = MutableLiveData<Boolean>(false) //unchecked term
     var error_code = MutableLiveData<Int>(0) //
+    val repo = Repository()
     var myid = ""
     var myKey = ""
     var pubAd = ""
@@ -43,7 +49,26 @@ class SignupVModel : ViewModel() {
         if(unchecked.value == false)
             stage.value=2
     }
-    fun postRequest(id:String, pass:String, mail:String, jumin:String, phone:String){
+    fun signupRequest(id:String, pass:String, mail:String, jumin:String, phone:String){
+        val body = SignUpRequestBody(id,pass, mail, jumin,phone)
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = repo.signupRequest(body)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    error_code.value = response.body()!!.result.toInt()
+                    if(error_code.value == 0)
+                    {
+                        myid = id
+                        stage.value = 3
+                    }
+                } else {
+                    //Log.d("ffffffffffffffffffffff",t.toString())
+                    error_code.value = 8
+                }
+            }
+        }
+    }
+    /*fun signupRequest(id:String, pass:String, mail:String, jumin:String, phone:String){
         val body = SignUpRequestBody(id,pass, mail, jumin,phone)
         val call = RetrofitInstance.backendApiService.signUp(body)
         call.enqueue(object : Callback<SignUpResponseBody> {
@@ -64,7 +89,7 @@ class SignupVModel : ViewModel() {
                 error_code.value = 8
             }
         })
-    }
+    }*/
 
     fun authPost(code:String){
         val body = authCode(code)
@@ -96,7 +121,7 @@ class SignupVModel : ViewModel() {
         else if(pass1 != pass2)
             error_code.value=7
         else {
-            postRequest(id,pass1, mail,jumin,phone)
+            signupRequest(id,pass1, mail,jumin,phone)
         }
     }
 
