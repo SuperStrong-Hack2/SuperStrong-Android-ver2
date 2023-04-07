@@ -5,20 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.superstrong.android.data.*
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-
 class SignupVModel : ViewModel() {
     var stage = MutableLiveData<Int>(1) //fragment number
     var done = MutableLiveData<Boolean>(false) //signup done
     var unchecked = MutableLiveData<Boolean>(false) //unchecked term
     var error_code = MutableLiveData<Int>(0) //
+    var loading = MutableLiveData<Boolean>(false)
     val repo = Repository()
-    var myid = ""
+    var myId = ""
     var myKey = ""
     var pubAd = ""
 
@@ -51,6 +48,7 @@ class SignupVModel : ViewModel() {
     }
     fun signupRequest(id:String, pass:String, mail:String, jumin:String, phone:String){
         val body = SignUpRequestBody(id,pass, mail, jumin,phone)
+        loading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val response = repo.signupRequest(body)
             withContext(Dispatchers.Main) {
@@ -58,60 +56,40 @@ class SignupVModel : ViewModel() {
                     error_code.value = response.body()!!.result.toInt()
                     if(error_code.value == 0)
                     {
-                        myid = id
+                        myId = id
                         stage.value = 3
                     }
                 } else {
-                    //Log.d("ffffffffffffffffffffff",t.toString())
                     error_code.value = 8
                 }
+                loading.value = false
             }
         }
     }
-    /*fun signupRequest(id:String, pass:String, mail:String, jumin:String, phone:String){
-        val body = SignUpRequestBody(id,pass, mail, jumin,phone)
-        val call = RetrofitInstance.backendApiService.signUp(body)
-        call.enqueue(object : Callback<SignUpResponseBody> {
-            override fun onResponse(
-                call: Call<SignUpResponseBody>,
-                response: retrofit2.Response<SignUpResponseBody>
-            ) {
-                error_code.value = response.body()!!.result.toInt()
-                if(error_code.value == 0)
-                {
-                    myid = id
-                    stage.value = 3
-                }
-            }
 
-            override fun onFailure(call: Call<SignUpResponseBody>, t: Throwable) {
-                //Log.d("ffffffffffffffffffffff",t.toString())
-                error_code.value = 8
-            }
-        })
-    }*/
-
-    fun authPost(code:String){
+    fun sendCode(code:String){
         val body = authCode(code)
-        val call = RetrofitInstance.backendApiService.emailAuth(body)
-        call.enqueue(object : Callback<UserData>{
-            override fun onResponse(
-                call: Call<UserData>,
-                response: retrofit2.Response<UserData>
-            ) {
-                auth_fail.value = response.body()!!.result.toInt()
-                if(auth_fail.value == 1) {
-                    pubAd = response.body()!!.pubAddress
-                    myKey = response.body()!!.key
-                    stage.value = 4
+        loading.value = true
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = repo.sendCode(body)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    auth_fail.value = response.body()!!.result.toInt()
+                    if(auth_fail.value == 1) {
+                        pubAd = response.body()!!.pubAddress
+                        Log.d("ssssssss",pubAd)
+                        myKey = response.body()!!.key
+                        Log.d("ffffffffffffffffffffff",myKey)
+                        myId =  response.body()!!.id
+                        Log.d("ffffffffffffffffffffff",myId)
+                        stage.value = 4
+                    }
+                } else {
+                    auth_fail.value = -1
                 }
+                loading.value = false
             }
-
-            override fun onFailure(call: Call<UserData>, t: Throwable) {
-                Log.d("ffffffffffffffffffffff",t.toString())
-                auth_fail.value = -1
-            }
-        })
+        }
     }
 
     fun signupRequst(id:String, pass1:String, pass2:String, mail:String, jumin:String, phone:String){
@@ -124,7 +102,5 @@ class SignupVModel : ViewModel() {
             signupRequest(id,pass1, mail,jumin,phone)
         }
     }
-
-
 
 }

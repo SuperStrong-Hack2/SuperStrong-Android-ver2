@@ -30,10 +30,10 @@ class Signup4Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.welcome.text="환영합니다. " + vmodel.myid + "님"
+        binding.welcome.text="환영합니다. " + vmodel.myId + "님"
         val sharedPref = activity?.getSharedPreferences("strong", Context.MODE_PRIVATE)
         with(sharedPref!!.edit()) {
-            putString("id", vmodel.myid)
+            putString("id", vmodel.myId)
             putString("key", vmodel.myKey)
             putString("pub_ad", vmodel.pubAd)
             apply()

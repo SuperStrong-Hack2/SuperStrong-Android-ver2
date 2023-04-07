@@ -4,33 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.Signup2Fragment">
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!-- 이용약관 -->
-
-        <!-- 메타머스크 이용약관 동의 -->
-
-        <!-- 개인정보 수집 및 이용 동의 -->
-
-
-        <View
-            android:id="@+id/toolbar_line"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-
-            android:background="#AEAEAE" />
 
 
         <!-- 확인 버튼 -->
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="-1dp"
+            android:layout_marginTop="0dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -44,11 +31,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="40dp"
-                    android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:textSize="18dp"
-                    android:text="아이디" />
+                    android:layout_marginStart="20dp"
+                    android:text="아이디"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/ideditText"
@@ -58,7 +45,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="75dp"
                     android:layout_marginEnd="60dp"
-                    android:background="@drawable/edit_text"/>
+                    android:background="@drawable/edit_text" />
 
             </LinearLayout>
 
@@ -74,22 +61,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="40dp"
-                    android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:textSize="18dp"
-                    android:text="비밀번호" />
+                    android:layout_marginStart="20dp"
+                    android:text="비밀번호"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/passeditText"
-                    android:inputType="textPassword"
-                    android:background="@drawable/edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_gravity="center"
                     android:layout_below="@+id/passtext"
+                    android:layout_gravity="center"
                     android:layout_marginStart="60dp"
-                    android:layout_marginEnd="60dp"/>
+                    android:layout_marginEnd="60dp"
+                    android:background="@drawable/edit_text"
+                    android:inputType="textPassword" />
 
             </LinearLayout>
 
@@ -104,22 +91,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="40dp"
-                    android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:textSize="18dp"
-                    android:text="비밀번호 재확인" />
+                    android:layout_marginStart="20dp"
+                    android:text="비밀번호 재확인"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/passeditText2"
-                    android:inputType="textPassword"
-                    android:background="@drawable/edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_gravity="center"
                     android:layout_below="@+id/passtext2"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="60dp"/>
+                    android:layout_marginEnd="60dp"
+                    android:background="@drawable/edit_text"
+                    android:inputType="textPassword" />
 
             </LinearLayout>
 
@@ -134,21 +121,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="40dp"
-                    android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:textSize="18dp"
-                    android:text="이메일" />
+                    android:layout_marginStart="20dp"
+                    android:text="이메일"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/emailedit"
-                    android:background="@drawable/edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_gravity="center"
                     android:layout_below="@+id/email"
+                    android:layout_gravity="center"
                     android:layout_marginStart="75dp"
-                    android:layout_marginEnd="60dp" />
+                    android:layout_marginEnd="60dp"
+                    android:background="@drawable/edit_text" />
 
             </LinearLayout>
 
@@ -163,31 +150,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="40dp"
-                    android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:textSize="18dp"
-                    android:text="주민등록번호" />
+                    android:layout_marginStart="20dp"
+                    android:text="주민등록번호"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/regedit"
-                    android:background="@drawable/edit_text"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="center"
                     android:layout_below="@+id/reg"
+                    android:layout_gravity="center"
                     android:layout_marginStart="30dp"
+                    android:background="@drawable/edit_text"
                     android:inputType="number"
                     android:maxLength="6" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="20sp"
                     android:text="-"
-                    android:layout_gravity="center"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/reg2edit"
@@ -212,50 +200,50 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="40dp"
-                    android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:textSize="18dp"
-                    android:text="전화번호" />
+                    android:layout_marginStart="20dp"
+                    android:text="전화번호"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/numedit"
-                    android:background="@drawable/edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_gravity="center"
                     android:layout_below="@+id/num"
+                    android:layout_gravity="center"
                     android:layout_marginStart="60dp"
-                    android:layout_marginEnd="60dp"/>
+                    android:layout_marginEnd="60dp"
+                    android:background="@drawable/edit_text" />
 
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/input_error"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
                 android:text=""
                 android:textColor="@color/red"
                 android:textSize="18dp" />
 
-
             <android.widget.Button
-                android:id="@+id/confirm_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_gravity="center"
                 android:background="@drawable/round_button"
+                android:id="@+id/confirm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
                 android:text="확인"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
 
-
-    </RelativeLayout>
-
+    </ScrollView>
 
 </FrameLayout>

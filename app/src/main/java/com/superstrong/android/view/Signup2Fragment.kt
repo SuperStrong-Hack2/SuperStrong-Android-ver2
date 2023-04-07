@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.superstrong.android.R
 import com.superstrong.android.databinding.FragmentSignup2Binding
 import com.superstrong.android.viewmodel.SignupVModel
 
@@ -35,27 +35,13 @@ class Signup2Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vmodel.error_code.observe(viewLifecycleOwner, Observer { //입력 정보 오류
-            val value = vmodel.error_code.value
-            if(value==0)
-                binding.inputError.text=""
-            else if(value==1)
-                binding.inputError.text="이미 가입된 아이디가 있습니다."
-            else if(value==2)
-                binding.inputError.text="이미 가입된 유저입니다."
-            else if(value==3)
-                binding.inputError.text="이미 가입된 유저입니다."
-            else if(value==4)
-                binding.inputError.text="이미 가입된 유저입니다.."
-            else if(value==5)
-                binding.inputError.text="인증이 끝나지 않은 계정입니다."
-            else if(value==6)
-                binding.inputError.text="비어 있는 항목이 있습니다."
-            else if(value==7)
-                binding.inputError.text="비밀번호가 일치하지 않습니다."
-            else if(value==8)
-                binding.inputError.text="서버와 통신중 문제가 발생했습니다."
-            else
-                vmodel.relogin()
+            val value = vmodel.error_code.value!!
+            val message = arrayOf("", "이미 가입된 아이디가 있습니다.", "이미 가입된 유저입니다.",
+                "이미 가입된 유저입니다.", "이미 가입된 유저입니다.",
+                "인증이 끝나지 않은 유저입니다.", "비어있는 항목이 있습니다.",
+                "비밀번호가 일치하지 않습니다.", "서버와 통신과정에서 문제가 발생했습니다.")
+            if(value!=0)
+                Toast.makeText(activity, message[value.toInt()], Toast.LENGTH_SHORT).show()
         })
 
 

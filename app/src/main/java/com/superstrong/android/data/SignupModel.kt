@@ -44,5 +44,9 @@ class Repository {
     suspend fun signupRequest(body: SignUpRequestBody) = withContext(Dispatchers.IO) {
         return@withContext retrofitService.signUp(body)
     }
+    suspend fun sendCode(body: authCode) = withContext(Dispatchers.IO) {
+        return@withContext retrofitService.emailAuth2(body)
+    }
+
 }
 

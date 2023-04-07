@@ -2,14 +2,11 @@ package com.superstrong.android.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.superstrong.android.R
-import com.superstrong.android.databinding.ActivityChpasswdBinding
 import com.superstrong.android.databinding.ActivitySignupBinding
-import com.superstrong.android.viewmodel.ChpasswdVModel
 import com.superstrong.android.viewmodel.SignupVModel
 
 class SignupActivity : AppCompatActivity() {
@@ -19,6 +16,7 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
+        val dialog = LoadingDialog(this)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(SignupVModel::class.java)
@@ -50,6 +48,12 @@ class SignupActivity : AppCompatActivity() {
                 startActivity(intentLogin)
                 finish()
             }
+        })
+        viewModel.loading.observe(this, Observer {
+            if(it)
+                dialog.show()
+            else
+                dialog.dismiss()
         })
         binding.btnBack.setOnClickListener{
             viewModel.back()

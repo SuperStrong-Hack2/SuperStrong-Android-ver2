@@ -36,7 +36,7 @@ class Signup3Fragment : Fragment() {
             vmodel.relogin()
         }
         binding.confirmButton.setOnClickListener{
-            vmodel.authPost(binding.emailEdit.text.toString())
+            vmodel.sendCode(binding.emailEdit.text.toString())
         }
 
         vmodel.auth_fail.observe(viewLifecycleOwner, Observer {

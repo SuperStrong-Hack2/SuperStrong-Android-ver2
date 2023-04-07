@@ -23,13 +23,17 @@ public interface BackendApiService {
     @Headers("Content-Type: application/json")
     suspend fun signUp(@Body body: SignUpRequestBody): Response<SignUpResponseBody>
 
-    @POST("api/auth")
+    /*@POST("api/auth")
     @Headers("Content-Type: application/json")
-    fun emailAuth(@Body body: authCode): Call<UserData>
+    fun emailAuth(@Body body: authCode): Call<UserData>*/
+
+    @POST("api/register/auth")
+    @Headers("Content-Type: application/json")
+    suspend fun emailAuth2(@Body body: authCode): Response<UserData>
 
 }
 object RetrofitInstance {
-    private const val BASE_URL = "https://6510-222-36-64-196.jp.ngrok.io"
+    private const val BASE_URL = "https://15e5-222-236-64-196.jp.ngrok.io"
     private val gson: Gson = GsonBuilder().create()
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
