@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.superstrong.android.R
 import com.superstrong.android.databinding.ActivityPayment2Binding
+import com.superstrong.android.viewmodel.PaymentVModel
 import com.superstrong.android.viewmodel.PaymentVModel2
 
 class PaymentActivity2 : AppCompatActivity() {
@@ -19,6 +20,7 @@ class PaymentActivity2 : AppCompatActivity() {
     private var coin_name: String? = ""
     private lateinit var binding: ActivityPayment2Binding
     private lateinit var paymentVModel2: PaymentVModel2
+//    private lateinit var paymentVModel1: PaymentVModel1
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +37,6 @@ class PaymentActivity2 : AppCompatActivity() {
 
 // --------------- 서버에서 정보 GET -------------------------------------------------------------------------------------------
 
-        // PaymentActivity에서 값을 가져와서 뿌려주기
         // 전송할 지갑의 주소
         val to_address = intent.getStringExtra("to_address")
         binding.payAddress.setText(to_address)

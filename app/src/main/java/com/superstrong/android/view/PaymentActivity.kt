@@ -89,9 +89,16 @@ class PaymentActivity : AppCompatActivity() {
             val coin_name: String? = paymentVModel.coinname.value
             intent.putExtra("coin_name", coin_name)
 
+            // id
+//            val user_id: String? = paymentVModel.coinname.value
+//            intent.putExtra("coin_name", coin_name)
+
+            // token
+//            val user_token: String? = paymentVModel.coinname.value
+//            intent.putExtra("coin_name", coin_name)
+
             if (to_address != null && send_amount != null && coin_name != null) {
                 paymentVModel.PostPayment(to_address, send_amount, coin_name, this)
-
                 startActivity(intent)
 
             } else {
@@ -101,6 +108,7 @@ class PaymentActivity : AppCompatActivity() {
                 Toast.makeText(this, "입력한 주소와 코인의 종류, 수량을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         // 바인딩 체인지 리스너
 
