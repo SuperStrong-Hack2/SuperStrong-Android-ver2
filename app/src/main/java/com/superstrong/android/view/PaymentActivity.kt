@@ -3,6 +3,8 @@ package com.superstrong.android.view
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -70,31 +72,72 @@ class PaymentActivity : AppCompatActivity() {
             }
         }
 
-        //다음 버튼을 눌렀을 때 코인 주소, 코인의 수량, 코인 종류 전달
+//------------------서버에게 데이터 POST-------------------------------------------------------------------------
+
         binding.nextButton.setOnClickListener {
             val intent = Intent(this, PaymentActivity2::class.java)
 
             // 코인 전송할 주소 전달
             val to_address: String? = paymentVModel.toaddress.value
-            intent.putExtra("ToAddress", to_address)
+            intent.putExtra("to_address", to_address)
 
             // 전송할 코인의 수량 전달
             val send_amount: Double? = paymentVModel.sendamount.value
-            intent.putExtra("ToCoinQuan", send_amount)
+            intent.putExtra("send_amount", send_amount)
 
             // 코인 종류 전달
             val coin_name: String? = paymentVModel.coinname.value
-            intent.putExtra("ToCoinName", coin_name)
+            intent.putExtra("coin_name", coin_name)
 
             if (to_address != null && send_amount != null && coin_name != null) {
                 paymentVModel.PostPayment(to_address, send_amount, coin_name, this)
+
+                startActivity(intent)
+
             } else {
+                Log.d("To Address","to address: "+to_address)
+                Log.d("Send Amount","send amount: "+send_amount)
+                Log.d("Coin name","coin name: "+coin_name)
                 Toast.makeText(this, "입력한 주소와 코인의 종류, 수량을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
-
-            startActivity(intent)
-
         }
+
+        // 바인딩 체인지 리스너
+
+        binding.sampleEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                paymentVModel.toaddress.value = s.toString()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.editCoin.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val amount = s.toString().toDouble()
+                paymentVModel.sendamount.value = amount
+                //paymentVModel.sendamount.value = s.toString().toDouble()
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedItem = parent?.getItemAtPosition(position)?.toString()
+                paymentVModel.coinname.value = selectedItem ?: ""
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                paymentVModel.toaddress.value = ""
+            }
+        }
+
 
     }
 
