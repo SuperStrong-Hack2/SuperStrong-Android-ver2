@@ -48,11 +48,12 @@ class SignupVModel : ViewModel() {
     }
     fun signupRequest(id:String, pass:String, mail:String, jumin:String, phone:String){
         val body = SignUpRequestBody(id,pass, mail, jumin,phone)
-        loading.value = true
+        //loading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val response = repo.signupRequest(body)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    Log.d("ffffffffffffffffffffff","tttttttttttttttttttttttt")
                     error_code.value = response.body()!!.result.toInt()
                     if(error_code.value == 0)
                     {
@@ -62,7 +63,7 @@ class SignupVModel : ViewModel() {
                 } else {
                     error_code.value = 8
                 }
-                loading.value = false
+               // loading.value = false
             }
         }
     }
@@ -74,6 +75,7 @@ class SignupVModel : ViewModel() {
             val response = repo.sendCode(body)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    loading.value = false
                     auth_fail.value = response.body()!!.result.toInt()
                     if(auth_fail.value == 1) {
                         pubAd = response.body()!!.pubAddress
@@ -85,9 +87,10 @@ class SignupVModel : ViewModel() {
                         stage.value = 4
                     }
                 } else {
+                    loading.value = false
                     auth_fail.value = -1
                 }
-                loading.value = false
+
             }
         }
     }
