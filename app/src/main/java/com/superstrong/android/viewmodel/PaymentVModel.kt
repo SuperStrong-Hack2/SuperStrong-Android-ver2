@@ -38,7 +38,7 @@ class PaymentVModel : ViewModel() {
                     val responseBody = response.body()?.toString()
                     val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
                     Log.i("리스폰스 (Payment1)","reponse:"+responseBody)
-                    if (jsonObject.get("validation").asString == "invalid input" || jsonObject.get("content").asString == "no destination" || jsonObject.get("validation").asString != null) {
+                    if (jsonObject.get("validation").asString == "invalid input" ||jsonObject.get("validation").asString != null) {
                         Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
                     }
                     else {

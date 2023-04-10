@@ -105,7 +105,6 @@ class PaymentActivity : AppCompatActivity() {
 
             if (to_address != null && send_amount != null && coin_name != null && token != null && id != null) {
                 paymentVModel.PostPayment(to_address, send_amount, coin_name, id!!, token!!, this)
-                startActivity(intent)
 
             } else {
                 Log.d("To Address","to address: "+to_address)
