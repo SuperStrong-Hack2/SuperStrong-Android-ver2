@@ -49,8 +49,8 @@ public interface BackendApiService {
     @Headers("Content-Type: application/json")
     suspend fun newPass(@Body body: Password): Response<ChpassReponse>
 
-
 }
+
 object RetrofitInstance {
     private const val BASE_URL = "https://86a7-222-236-64-196.jp.ngrok.io"
     private val gson: Gson = GsonBuilder().create()

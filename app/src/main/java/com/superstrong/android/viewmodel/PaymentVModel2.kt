@@ -35,14 +35,16 @@ class PaymentVModel2 : ViewModel() {
                 if (response.isSuccessful) {
 
                     val responseBody = response.body()?.toString()
-                    val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
+//                    val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
+//                    Log.i("리스폰스","reponse:"+responseBody)
+//                    if (jsonObject.get("invalid input").asString == "no destination" && jsonObject.get("invalid input").asString != null) {
+//                        Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
+//                    } else {
+//                        val intent = Intent(context, PaymentActivity3::class.java)
+//                        context.startActivity(intent)
+//                    }
                     Log.i("리스폰스","reponse:"+responseBody)
-                    if (jsonObject.get("invalid input").asString == "no destination" && jsonObject.get("invalid input").asString != null) {
-                        Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                    } else {
-                        val intent = Intent(context, PaymentActivity3::class.java)
-                        context.startActivity(intent)
-                    }
+                    Log.i("성ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ","공ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ:")
                 } else {
                     val errorBody = response.errorBody()?.toString()
                     Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()

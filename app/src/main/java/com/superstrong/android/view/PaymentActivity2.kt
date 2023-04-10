@@ -125,22 +125,28 @@ class PaymentActivity2 : AppCompatActivity() {
 
 
 //            // 코인 전송할 주소 전달
-//            to_address = paymentVModel2.toaddress.value
+//            //to_address = paymentVModel2.toaddress.value
+//            paymentVModel2.toaddress.value=to_address
 //
 //            // 전송할 코인의 수량 전달
-//            send_amount = paymentVModel2.sendamount.value
+//            //send_amount = paymentVModel2.sendamount.value
+//            paymentVModel2.sendamount.value=send_amount
 //
 //            // 코인 종류 전달
-//            coin_name = paymentVModel2.coinname.value
+//            //coin_name = paymentVModel2.coinname.value
+//            paymentVModel2.coinname.value=coin_name
 //
 //            // 코인 잔금
-//            remain_amount = paymentVModel2.remainamount.value
+//            //remain_amount = paymentVModel2.remainamount.value
+//            paymentVModel2.remainamount.value=remain_amount
 //
 //            // 가스 요금
-//            circulated_gas = paymentVModel2.circulatedgas.value
+//            //circulated_gas = paymentVModel2.circulatedgas.value
+//            paymentVModel2.circulatedgas.value=circulated_gas
 //
 //            // 토큰
 //            token = paymentVModel2.token.value
+//            paymentVModel2.token.value=token
 
             Log.d("To Address","to address: "+to_address)
             Log.d("Send Amount", "send amount: "+ send_amount)
@@ -150,20 +156,20 @@ class PaymentActivity2 : AppCompatActivity() {
             Log.d("Token","token: "+token)
             Log.d("ID","id: "+id)
 
-//            if (to_address != null && send_amount != null && coin_name != null && circulated_gas != null && remain_amount != null && token != null && id != null) {
-//                paymentVModel2.PostPayment(to_address, send_amount, coin_name, circulated_gas, remain_amount, token!!, id!!, this)
-//                startActivity(intent)
-//
-//            } else {
-//                Log.d("To Address","to address: "+to_address)
-//                Log.d("Send Amount", "send amount:"+ send_amount)
-//                Log.d("Coin name","coin name: "+coin_name)
-//                Log.d("Circulated Gas","circulated_gas: "+circulated_gas)
-//                Log.d("Remain Amount","remain_amount: "+remain_amount)
-//                Log.d("Token","token: "+token)
-//                Log.d("ID","id: "+id)
-//                Toast.makeText(this, "오류!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", Toast.LENGTH_SHORT).show()
-//            }
+            if (to_address != null && send_amount != null && coin_name != null && circulated_gas != null && remain_amount != null && token != null && id != null) {
+                paymentVModel2.PostPayment(to_address, send_amount, coin_name, circulated_gas, remain_amount, token!!, id!!, this)
+                startActivity(intent)
+
+            } else {
+                Log.d("To Address","to address: "+to_address)
+                Log.d("Send Amount", "send amount:"+ send_amount)
+                Log.d("Coin name","coin name: "+coin_name)
+                Log.d("Circulated Gas","circulated_gas: "+circulated_gas)
+                Log.d("Remain Amount","remain_amount: "+remain_amount)
+                Log.d("Token","token: "+token)
+                //Log.d("ID","id: "+id)
+                Toast.makeText(this, "오류!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
