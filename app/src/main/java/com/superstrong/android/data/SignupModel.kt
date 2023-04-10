@@ -1,9 +1,9 @@
 package com.superstrong.android.data
 
 
+
 import com.google.gson.annotations.SerializedName
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+
 
 data class SignUpRequestBody(
     @SerializedName("id")
@@ -23,7 +23,7 @@ data class SignUpResponseBody(
     val result: String,
 )
 
-data class authCode(
+data class AuthCode(
     @SerializedName("code")
     var code:String
 )
@@ -39,14 +39,11 @@ data class UserData(
     var id:String
 )
 
-class Repository {
-    val retrofitService = RetrofitInstance.backendApiService
-    suspend fun signupRequest(body: SignUpRequestBody) = withContext(Dispatchers.IO) {
-        return@withContext retrofitService.signUp(body)
-    }
-    suspend fun sendCode(body: authCode) = withContext(Dispatchers.IO) {
-        return@withContext retrofitService.emailAuth2(body)
-    }
 
+
+class Repository :BaseRepo() {
+    val retrofitService = RetrofitInstance.backendApiService
+    suspend fun signupRequest(body: SignUpRequestBody) : Resource<SignUpResponseBody> = safeApiCall{retrofitService.signUp(body)}
+    suspend fun sendCode(body: AuthCode) : Resource<UserData> =  safeApiCall{retrofitService.emailAuth(body)}
 }
 

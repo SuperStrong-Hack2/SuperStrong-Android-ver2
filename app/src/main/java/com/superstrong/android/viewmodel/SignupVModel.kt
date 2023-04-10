@@ -1,13 +1,12 @@
 package com.superstrong.android.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.superstrong.android.data.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+
+
 class SignupVModel : ViewModel() {
     var stage = MutableLiveData<Int>(1) //fragment number
     var done = MutableLiveData<Boolean>(false) //signup done
@@ -15,9 +14,7 @@ class SignupVModel : ViewModel() {
     var error_code = MutableLiveData<Int>(0) //
     var loading = MutableLiveData<Boolean>(false)
     val repo = Repository()
-    var myId = ""
-    var myKey = ""
-    var pubAd = ""
+    var myId :String? = null
 
     // 0 good
     // 1 ID is already exist
@@ -48,61 +45,37 @@ class SignupVModel : ViewModel() {
     }
     fun signupRequest(id:String, pass:String, mail:String, jumin:String, phone:String){
         val body = SignUpRequestBody(id,pass, mail, jumin,phone)
-        //loading.value = true
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = repo.signupRequest(body)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    Log.d("ffffffffffffffffffffff","tttttttttttttttttttttttt")
-                    error_code.value = response.body()!!.result.toInt()
-                    if(error_code.value == 0)
-                    {
-                        myId = id
-                        stage.value = 3
-                    }
-                } else {
-                    error_code.value = 8
-                }
-               // loading.value = false
-            }
+        loading.value = true
+        viewModelScope.launch{
+            val res = repo.signupRequest(body).data
+            error_code.value = res?.result?.toInt()?: 8
+            loading.value = false
+            if(error_code.value == 0)
+                stage.value = 3
         }
     }
 
     fun sendCode(code:String){
-        val body = authCode(code)
+        val body = AuthCode(code)
         loading.value = true
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = repo.sendCode(body)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    loading.value = false
-                    auth_fail.value = response.body()!!.result.toInt()
-                    if(auth_fail.value == 1) {
-                        pubAd = response.body()!!.pubAddress
-                        Log.d("ssssssss",pubAd)
-                        myKey = response.body()!!.key
-                        Log.d("ffffffffffffffffffffff",myKey)
-                        myId =  response.body()!!.id
-                        Log.d("ffffffffffffffffffffff",myId)
-                        stage.value = 4
-                    }
-                } else {
-                    loading.value = false
-                    auth_fail.value = -1
-                }
-
-            }
+        viewModelScope.launch{
+            val res = repo.sendCode(body).data
+            auth_fail.value = res?.result?.toInt() ?: -1
+            myId = res?.id
+            loading.value = false
+            if(auth_fail.value == 1)
+                stage.value = 4
         }
     }
 
-    fun signupRequst(id:String, pass1:String, pass2:String, mail:String, jumin:String, phone:String){
+    fun signupRequst(id:String, pass1:String, pass2:String, mail:String, ssn:String, phone:String){
 
-        if(id =="" || pass1 == "" || pass2 == "" || mail == "" || jumin == "" || phone == "")
+        if(id =="" || pass1 == "" || pass2 == "" || mail == "" || ssn == "" || phone == "")
             error_code.value=6
         else if(pass1 != pass2)
             error_code.value=7
         else {
-            signupRequest(id,pass1, mail,jumin,phone)
+            signupRequest(id,pass1, mail,ssn,phone)
         }
     }
 

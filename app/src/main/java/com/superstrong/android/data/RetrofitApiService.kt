@@ -39,7 +39,16 @@ public interface BackendApiService {
 
     @POST("api/register/auth")
     @Headers("Content-Type: application/json")
-    suspend fun emailAuth2(@Body body: authCode): Response<UserData>
+    suspend fun emailAuth(@Body body: AuthCode): Response<UserData>
+
+    @POST("api/chpass")
+    @Headers("Content-Type: application/json")
+    suspend fun chPass(@Body body: Password): Response<ChpassReponse>
+
+    @POST("api/chpass/newPass")
+    @Headers("Content-Type: application/json")
+    suspend fun newPass(@Body body: Password): Response<ChpassReponse>
+
 
 }
 object RetrofitInstance {
@@ -58,3 +67,4 @@ object RetrofitInstance {
 class RetrofitApiService {
 
 }
+

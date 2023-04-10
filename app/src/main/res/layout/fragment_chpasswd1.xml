@@ -39,6 +39,7 @@
             android:id="@+id/wrong_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:visibility="invisible"
             android:textColor="@color/red"
             android:text="비밀번호가 일치하지 않습니다."/>

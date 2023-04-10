@@ -48,9 +48,8 @@ class Signup3Fragment : Fragment() {
                 val myToast = Toast.makeText(activity, "서버와 통신 과정에서 문제가 발생했습니다..", Toast.LENGTH_SHORT)
                 myToast.show()
             }
-            else if(vmodel.auth_fail.value != 1) {
-                vmodel.relogin()
-            }
+            else if(vmodel.auth_fail.value != 1)
+                 vmodel.relogin()
         })
     }
 
