@@ -20,9 +20,9 @@ public interface BackendApiService {
     @POST("api/send_input")
     fun payment1(@Body payInfo1: PayInfo1): Call<JsonObject>
 
-//    //Payment1 -> Payment2 넘어갈 때 GET
-//    @GET("api/send_input")
-//    fun paymentRsp1(@Body payInfoRsp1: PayInfoRsp1): Call<JsonObject>
+    //Payment1 -> Payment2 넘어갈 때 GET
+    @POST("api/send_input")
+    fun paymentRsp1(@Body payInfoRsp1: PayInfoRsp1): Call<JsonObject>
 
     // Payment2 -> Payment3 넘어갈 때 POST
     @POST("api/send_input")

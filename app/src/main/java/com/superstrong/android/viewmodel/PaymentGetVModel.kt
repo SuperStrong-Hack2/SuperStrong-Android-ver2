@@ -8,49 +8,49 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.superstrong.android.data.*
-import com.superstrong.android.view.FindPassActivity
+import com.superstrong.android.data.PayInfoRsp1
+import com.superstrong.android.data.RetrofitInstance
 import com.superstrong.android.view.PaymentActivity2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PaymentVModel2 : ViewModel() {
+class PaymentGetVModel : ViewModel()  {
+
     val toaddress = MutableLiveData<String>()
     val sendamount = MutableLiveData<Double>()
-    val remainamount = MutableLiveData<Double>()
-    val circulatedgas = MutableLiveData<Double>()
     val coinname = MutableLiveData<String>()
-    val token = MutableLiveData<String>()
-    val id = MutableLiveData<String>()
+    val circulated_gas = MutableLiveData<Double>()
+    val remain_amount  = MutableLiveData<Double>()
 
-    fun PostPayment(to_address: String, send_amount: Double, coin_name: String, remain_amount: Double, circulated_gas: Double, token:String, id:String, context: Context) {
-        val payInfo2 = PayInfo2(to_address, send_amount, coin_name, remain_amount, circulated_gas, token, id) // 전송할 데이터 모델 객체 생성
-        Log.d("액티비티 2에서 3으로 넘어갈때!!! 넘기는 값들 !!!!!!!!", "df" + payInfo2)
-        val call = RetrofitInstance.backendApiService.payment2(payInfo2) // POST 요청 보내기
+
+    fun GetPayment(to_address: String, send_amount: Double, coin_name: String, circulated_gas: Double, remain_amount: Double, context: Context) {
+        val payInfoRsp1 = PayInfoRsp1(to_address, send_amount, coin_name,circulated_gas,remain_amount) // 전송할 데이터 모델 객체 생성
+        Log.d("서버에서 들고옴!!!!!리스폰ㄴ스으으으으으으으으으으으으으", "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" + payInfoRsp1)
+        val call = RetrofitInstance.backendApiService.paymentRsp1(payInfoRsp1) // GET 요청 보내기
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful) {
-
                     val responseBody = response.body()?.toString()
                     val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
                     Log.i("리스폰스","reponse:"+responseBody)
-                    if (jsonObject.get("token").asString == "invalid input") {
-                        Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    if (jsonObject.get("token").asString == "invalid") {
+                        Toast.makeText(context, "GET 송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
                     } else {
                         val intent = Intent(context, PaymentActivity2::class.java)
                         context.startActivity(intent)
                     }
                 } else {
                     val errorBody = response.errorBody()?.toString()
-                    Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "GET 송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Toast.makeText(context, "통신 실패: PaymentVModel2", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "통신 실패: PaymentGetVModel", Toast.LENGTH_SHORT).show()
 
             }
         })
-    }}
+    }
+}

@@ -2,10 +2,10 @@ package com.superstrong.android.data
 
 import com.google.gson.annotations.SerializedName
 
-class PaymentModel2 {
+class PaymentModel3 {
 }
 
-data class PayInfo2(  //POST
+data class PayInfoRsp1( // GET
     @SerializedName("to_address")
     val to_address: String,
     @SerializedName("send_amount")
@@ -15,9 +15,5 @@ data class PayInfo2(  //POST
     @SerializedName("circulated_gas")
     val circulated_gas : Double,
     @SerializedName("remain_amount")
-    val remain_amount : Double,
-    @SerializedName("id")
-    var id: String,
-    @SerializedName("token")
-    var token: String
+    val remain_amount : Double
 )

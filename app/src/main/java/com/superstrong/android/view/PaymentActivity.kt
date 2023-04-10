@@ -1,6 +1,7 @@
 package com.superstrong.android.view
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -21,6 +22,8 @@ class PaymentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPaymentBinding
     private var coin_name: String? = ""
+    var id:String ?= "ida"
+    var token:String ?= "abababababab"
     private lateinit var paymentVModel: PaymentVModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,17 +80,20 @@ class PaymentActivity : AppCompatActivity() {
         binding.nextButton.setOnClickListener {
             val intent = Intent(this, PaymentActivity2::class.java)
 
+//            val sharedPref = getSharedPreferences("strong", Context.MODE_PRIVATE)
+//            var token = sharedPref.getString("jwt_token","")
+//            token = paymentVModel.token.value
+//            var id = sharedPref.getString("id","")
+//            id = paymentVModel.id.value
+
             // 코인 전송할 주소 전달
             val to_address: String? = paymentVModel.toaddress.value
-            intent.putExtra("to_address", to_address)
 
             // 전송할 코인의 수량 전달
             val send_amount: Double? = paymentVModel.sendamount.value
-            intent.putExtra("send_amount", send_amount)
 
             // 코인 종류 전달
             val coin_name: String? = paymentVModel.coinname.value
-            intent.putExtra("coin_name", coin_name)
 
             // id
 //            val user_id: String? = paymentVModel.coinname.value
@@ -97,14 +103,16 @@ class PaymentActivity : AppCompatActivity() {
 //            val user_token: String? = paymentVModel.coinname.value
 //            intent.putExtra("coin_name", coin_name)
 
-            if (to_address != null && send_amount != null && coin_name != null) {
-                paymentVModel.PostPayment(to_address, send_amount, coin_name, this)
+            if (to_address != null && send_amount != null && coin_name != null && token != null && id != null) {
+                paymentVModel.PostPayment(to_address, send_amount, coin_name, id!!, token!!, this)
                 startActivity(intent)
 
             } else {
                 Log.d("To Address","to address: "+to_address)
                 Log.d("Send Amount","send amount: "+send_amount)
                 Log.d("Coin name","coin name: "+coin_name)
+                Log.d("Token","token: "+token)
+                Log.d("ID","id: "+id)
                 Toast.makeText(this, "입력한 주소와 코인의 종류, 수량을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
