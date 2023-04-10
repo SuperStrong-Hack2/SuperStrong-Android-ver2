@@ -14,7 +14,7 @@ import retrofit2.http.POST
 
 public interface BackendApiService {
     @POST("api/login")
-    fun login(@Body user: User): Call<JsonObject>
+    fun login(@Body encryptedData: EncryptedData): Call<JsonObject>
 
     // Payment1 -> Payment2 넘어갈 때 POST
     @POST("api/send_input")

@@ -21,3 +21,8 @@ data class User(
     @SerializedName("pw")
     val pw: String
 )
+
+data class EncryptedData(
+    @SerializedName("EncryptedData")
+    val EncryptedData: String
+    )
