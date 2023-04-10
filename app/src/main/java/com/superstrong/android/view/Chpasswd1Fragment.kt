@@ -30,7 +30,7 @@ class Chpasswd1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vmodel.wrongPasswd.observe(viewLifecycleOwner, Observer {
-            if(it)
+            if(it==1)
                 binding.wrongText.visibility=View.VISIBLE
 
             else
