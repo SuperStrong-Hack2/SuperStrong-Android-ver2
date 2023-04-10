@@ -19,7 +19,6 @@ class LoginViewModel : ViewModel() {
     val password = MutableLiveData<String>()
     fun PostLogin(username: String, password: String,context: Context) {
         val sharedPref = context.getSharedPreferences("strong", Context.MODE_PRIVATE)
-        val IDsharedPref = context.getSharedPreferences("ID", Context.MODE_PRIVATE)
         val user = User(username, password) // 전송할 데이터 모델 객체 생성
         val encryptedUser = EncryptedData(AES256Util.aesEncode(Gson().toJson(user)))
         val call = RetrofitInstance.backendApiService.login(encryptedUser) // POST 요청 보내기
