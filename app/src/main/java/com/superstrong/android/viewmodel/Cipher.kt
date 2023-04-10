@@ -6,8 +6,6 @@ import java.security.spec.AlgorithmParameterSpec
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
-
-
 object AES256Util {
     //키값 32바이트: AES256(24: AES192, 16: AES128)
     var secretKey = "01234567890123450123456789012345"
@@ -32,13 +30,12 @@ object AES256Util {
     }
 
     //AES256 복호화
+
     fun aesDecode(str: String): String {
         try {
             val textBytes = Base64.decode(str, Base64.DEFAULT)
-            val ivSpec: AlgorithmParameterSpec = IvParameterSpec(
-                ivBytes
-            )
-            val newKey = SecretKeySpec(secretKey.toByteArray(charset("UTF-8")), "AES")
+            val ivSpec: AlgorithmParameterSpec = IvParameterSpec(ivBytes)
+            val newKey = SecretKeySpec(secretKey.toByteArray(Charset.forName("UTF-8")), "AES")
             val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
             cipher.init(Cipher.DECRYPT_MODE, newKey, ivSpec)
             return String(cipher.doFinal(textBytes), Charset.forName("UTF-8"))

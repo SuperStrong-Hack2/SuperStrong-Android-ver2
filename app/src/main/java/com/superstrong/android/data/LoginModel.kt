@@ -23,6 +23,6 @@ data class User(
 )
 
 data class EncryptedData(
-    @SerializedName("EncryptedData")
-    val EncryptedData: String
+    @SerializedName("e2e_req")
+    val e2e_req: String
     )

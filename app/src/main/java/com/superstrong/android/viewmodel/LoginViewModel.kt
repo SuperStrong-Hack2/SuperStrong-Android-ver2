@@ -27,13 +27,15 @@ class LoginViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()?.toString()
                     val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
-                    if (jsonObject.get("token").asString == "login failed") {
+                    val data= jsonObject.get("e2e_res").asString
+                    val decoded_data=AES256Util.aesDecode(data)
+                    if (decoded_data == "login failed") {
                         // ---------------------로그인 실패 시 처리할 코드---------------------
                         Toast.makeText(context, "로그인이 실패했습니다.", Toast.LENGTH_SHORT).show()
                     } else {
                         // ---------------------로그인 성공 시 처리할 코드---------------------
                         with(sharedPref.edit()) {
-                            putString("jwt_token", responseBody)
+                            putString("jwt_token", decoded_data)
                             putString("ID", username)
                             apply()
                         }
