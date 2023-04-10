@@ -26,9 +26,13 @@ class LoginViewModel : ViewModel() {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()?.toString()
+                    Log.i("rww","response"+responseBody)
                     val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
+                    Log.i("rww","json0bject:"+jsonObject)
                     val data= jsonObject.get("e2e_res").asString
+                    Log.i("rww","data:"+data)
                     val decoded_data=AES256Util.aesDecode(data)
+                    Log.i("rww","decoded_data:"+decoded_data)
                     if (decoded_data == "login failed") {
                         // ---------------------로그인 실패 시 처리할 코드---------------------
                         Toast.makeText(context, "로그인이 실패했습니다.", Toast.LENGTH_SHORT).show()
