@@ -23,10 +23,13 @@ class PaymentActivity2 : AppCompatActivity() {
 
     private var coin_name: String? = ""
     private lateinit var binding: ActivityPayment2Binding
+    private lateinit var paymentVModel: PaymentVModel
     private lateinit var paymentVModel2: PaymentVModel2
     private lateinit var paymentGetVModel: PaymentGetVModel
     var id:String ?= "ida"
     var token:String ?= "abababababab"
+
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,29 +48,46 @@ class PaymentActivity2 : AppCompatActivity() {
 
 // --------------- 서버에서 정보 GET -------------------------------------------------------------------------------------------
 
+
         // 지갑의 주소 받기
-        val to_address: String? = paymentGetVModel.toaddress.value
-        binding.payAddress.setText(to_address)
+        val to_address: String? = intent.getStringExtra("to_address")
 
         // 코인의 수량 받기
         //val send_amount = intent.getDoubleExtra("ToCoinQuan")
-        val send_amount: Double? = paymentGetVModel.sendamount.value
-        binding.coinPay.setText(send_amount.toString())
-        Log.d("Send Amount","전송 수량 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! - " + send_amount)
+        val send_amount: Double? = intent.getDoubleExtra("send_amount", 0.0)
+        //val send_amount: Double? = paymentGetVModel.sendamount.value
+        //Log.d("Send Amount","전송 수량 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! - " + send_amount)
 
         // 코인의 이름 받기
-        val coin_name: String? = paymentGetVModel.coinname.value
+        //val coin_name: String? = paymentGetVModel.coinname.value
+        val coin_name: String? = intent.getStringExtra("coin_name")
+
+        // 코인의 가스 비용 받기
+        // val circulated_gas: Double? = paymentGetVModel.circulated_gas.value
+        val circulated_gas: Double? = intent.getDoubleExtra("circulated_gas", 0.0)
+
+        // 코인의 잔금 받기
+        //val remain_amount: Double? = paymentGetVModel.remain_amount.value
+        val remain_amount: Double? = intent.getDoubleExtra("remain_amount", 0.0)
+
+        Log.d("**************************************************** To Address","to address: "+to_address)
+        Log.d("***************************************************** To Address* Send Amount","send amount: "+send_amount)
+        Log.d("***************************************************** To Address* Coin name","coin name: "+coin_name)
+        Log.d("***************************************************** To Address* Circulated Gas","circulated_gas: "+circulated_gas)
+        Log.d("***************************************************** To Address* Remain Amount","remain_amount: "+remain_amount)
+
+        binding.payAddress.setText(to_address)
+
+        binding.coinPay.setText(send_amount.toString())
+
         binding.coin1.setText(coin_name)
         binding.coin2.setText(coin_name)
         binding.coin3.setText(coin_name)
 
-        // 코인의 가스 비용 받기
-        val circulated_gas: Double? = paymentGetVModel.circulated_gas.value
         binding.coinGas.setText(circulated_gas.toString())
 
-        // 코인의 잔금 받기
-        val remain_amount: Double? = paymentGetVModel.remain_amount.value
         binding.coinGas.setText(remain_amount.toString())
+
 
         if (to_address != null && send_amount != null && coin_name != null && circulated_gas != null && remain_amount != null) {
             paymentGetVModel.GetPayment(to_address, send_amount, coin_name, circulated_gas, remain_amount, this)

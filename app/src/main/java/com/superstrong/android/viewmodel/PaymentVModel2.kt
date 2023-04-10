@@ -11,6 +11,7 @@ import com.google.gson.JsonObject
 import com.superstrong.android.data.*
 import com.superstrong.android.view.FindPassActivity
 import com.superstrong.android.view.PaymentActivity2
+import com.superstrong.android.view.PaymentActivity3
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +40,7 @@ class PaymentVModel2 : ViewModel() {
                     if (jsonObject.get("invalid input").asString == "no destination" && jsonObject.get("invalid input").asString != null) {
                         Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
                     } else {
-                        val intent = Intent(context, PaymentActivity2::class.java)
+                        val intent = Intent(context, PaymentActivity3::class.java)
                         context.startActivity(intent)
                     }
                 } else {

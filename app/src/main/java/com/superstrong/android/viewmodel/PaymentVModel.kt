@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil.setContentView
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
@@ -19,13 +20,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PaymentVModel : ViewModel() {
+
     val toaddress = MutableLiveData<String>()
     val sendamount = MutableLiveData<Double>()
     val coinname = MutableLiveData<String>()
     val token = MutableLiveData<String>()
     val id = MutableLiveData<String>()
-
-    private lateinit var binding: ActivityPayment2Binding
 
     fun PostPayment(to_address: String, send_amount: Double, coin_name: String, token: String, id:String, context: Context) {
         val payInfo1 = PayInfo1(to_address, send_amount, coin_name, token, id) // 전송할 데이터 모델 객체 생성
@@ -42,8 +42,12 @@ class PaymentVModel : ViewModel() {
                         Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
                     }
                     else {
-
                         val intent = Intent(context, PaymentActivity2::class.java)
+                        intent.putExtra("calculated_gas",jsonObject.get("calculated_gas").asDouble)
+                        intent.putExtra("send_amount",jsonObject.get("send_amount").asDouble)
+                        intent.putExtra("coin_name",jsonObject.get("coin_name").asString)
+                        intent.putExtra("to_address",jsonObject.get("to_address").asString)
+                        intent.putExtra("remain_amount",jsonObject.get("remain_amount").asDouble)
                         context.startActivity(intent)
                     }
                 } else {
