@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
-            android:name=".view.SplashActivity"
+            android:name=".view.LoginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,12 +20,7 @@
             </intent-filter>
 
         </activity>
-        <activity
-            android:name=".view.WalletActivity"
-            android:exported="true">
 
-
-        </activity>
         <activity
             android:name=".view.PaymentActivity"
             android:exported="true">
@@ -67,11 +62,6 @@
 
         <activity
             android:name=".view.WithdrawalActivity"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".view.LoginActivity"
             android:exported="true">
 
         </activity>
