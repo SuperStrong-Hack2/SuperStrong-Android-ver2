@@ -33,7 +33,9 @@ class LoginViewModel : ViewModel() {
                     Log.i("rww","data:"+data)
                     val decoded_data=AES256Util.aesDecode(data)
                     Log.i("rww","decoded_data:"+decoded_data)
-                    if (decoded_data == "login failed") {
+                    val jsonObject2 = Gson().fromJson(decoded_data, JsonObject::class.java)
+                    Log.i("rww","jsonObject2:"+jsonObject2)
+                    if (jsonObject2.get("token").asString == "login failed") {
                         // ---------------------로그인 실패 시 처리할 코드---------------------
                         Toast.makeText(context, "로그인이 실패했습니다.", Toast.LENGTH_SHORT).show()
                     } else {
