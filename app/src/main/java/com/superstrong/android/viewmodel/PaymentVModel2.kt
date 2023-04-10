@@ -51,7 +51,6 @@ class PaymentVModel2 : ViewModel() {
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 Toast.makeText(context, "통신 실패: PaymentVModel2", Toast.LENGTH_SHORT).show()
-
             }
         })
     }}

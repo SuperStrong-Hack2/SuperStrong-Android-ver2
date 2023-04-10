@@ -31,20 +31,24 @@ class PaymentGetVModel : ViewModel()  {
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()?.toString()
-                    val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
-                    Log.i("리스폰스","reponse:"+responseBody)
-                    if (jsonObject.get("token").asString == "invalid") {
-                        Toast.makeText(context, "GET 송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                    } else {
-                        val intent = Intent(context, PaymentActivity2::class.java)
-                        context.startActivity(intent)
-                    }
-                } else {
-                    val errorBody = response.errorBody()?.toString()
-                    Toast.makeText(context, "GET 송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                }
+//                if (response.isSuccessful) {
+//                    val responseBody = response.body()?.toString()
+//                    val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
+//                    Log.i("리스폰스","reponse:"+responseBody)
+//                    if (jsonObject.get("").asString == "invalid") {
+//                        Toast.makeText(context, "GET 송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
+//                    } else {
+//                        val intent = Intent(context, PaymentActivity2::class.java)
+//                        context.startActivity(intent)
+//                    }
+//
+//
+//                } else {
+//                    val errorBody = response.errorBody()?.toString()
+//                    Toast.makeText(context, "GET 송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
+//                }
+                val intent = Intent(context, PaymentActivity2::class.java)
+                context.startActivity(intent)
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
