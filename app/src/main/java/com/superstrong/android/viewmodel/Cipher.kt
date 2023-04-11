@@ -8,7 +8,7 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 object AES256Util {
     //키값 32바이트: AES256(24: AES192, 16: AES128)
-    var secretKey = "01234567890123450123456789012345"
+    var secretKey = "01234567890123456789012345678901"
     var ivBytes = "0123456789012345".toByteArray()
 
     //AES256 암호화
