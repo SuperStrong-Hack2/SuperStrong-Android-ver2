@@ -25,8 +25,11 @@ class PaymentVModel2 : ViewModel() {
     fun PostPayment(id: String, token: String, pub_address: String, gas: Double, coin_name: String, amount:Double, context: Context) {
         val payInfo2 = PayInfo2(id, "", pub_address, gas, coin_name, amount) // 전송할 데이터 모델 객체 생성
         Log.d("액티비티 2에서 3으로 넘어갈때!!! 넘기는 값들 !!!!!!!!", "df" + payInfo2)
-        val encryptedPayment = EncryptedPayment(AES256Util.aesEncode(Gson().toJson(payInfo2)), token)
+        val encryptedPayment = EncryptedPayment(AES256Util2.aesEncode(Gson().toJson(payInfo2)), token)
         val call = RetrofitInstance.backendApiService.payment2(encryptedPayment) // POST 요청 보내기
+
+        // AES256Util 클래스 초기화
+        AES256Util2.init(context)
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
@@ -39,7 +42,7 @@ class PaymentVModel2 : ViewModel() {
                     Log.i("rww","data:"+data)
                     Log.i("리스폰스 (Payment2)","reponse:"+responseBody)
 
-                    val decoded_data=AES256Util.aesDecode(data)
+                    val decoded_data=AES256Util2.aesDecode(data)
                     Log.i("rww","decoded_data:"+decoded_data)
 
                     val jsonObject2 = Gson().fromJson(decoded_data, JsonObject::class.java)

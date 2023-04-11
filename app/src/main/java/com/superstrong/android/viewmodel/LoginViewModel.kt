@@ -20,7 +20,7 @@ class LoginViewModel : ViewModel() {
     fun PostLogin(username: String, password: String,context: Context) {
         val sharedPref = context.getSharedPreferences("strong", Context.MODE_PRIVATE)
         val user = User(username, password) // 전송할 데이터 모델 객체 생성
-        val encryptedUser = EncryptedData(AES256Util.aesEncode(Gson().toJson(user)))
+        val encryptedUser = EncryptedData(AES256Util1.aesEncode(Gson().toJson(user)))
         val call = RetrofitInstance.backendApiService.login(encryptedUser) // POST 요청 보내기
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
@@ -31,7 +31,7 @@ class LoginViewModel : ViewModel() {
                     Log.i("rww","json0bject:"+jsonObject)
                     val data= jsonObject.get("e2e_res").asString
                     Log.i("rww","data:"+data)
-                    val decoded_data=AES256Util.aesDecode(data)
+                    val decoded_data=AES256Util1.aesDecode(data)
                     Log.i("rww","decoded_data:"+decoded_data)
                     val jsonObject2 = Gson().fromJson(decoded_data, JsonObject::class.java)
                     Log.i("rww","jsonObject2:"+jsonObject2)

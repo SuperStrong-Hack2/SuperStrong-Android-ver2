@@ -27,9 +27,6 @@ class PaymentActivity2 : AppCompatActivity() {
     private lateinit var paymentVModel: PaymentVModel
     private lateinit var paymentVModel2: PaymentVModel2
     private lateinit var paymentGetVModel: PaymentGetVModel
-    //var token:String ?= "abababababab"
-//    val sharedPref = getSharedPreferences("strong", Context.MODE_PRIVATE)
-//    var token = sharedPref.getString("jwt_token","")
 
 
 
@@ -65,8 +62,8 @@ class PaymentActivity2 : AppCompatActivity() {
         val coin_name: String? = intent.getStringExtra("coin_name")
 
         // 코인의 가스 비용 받기
-        // val circulated_gas: Double? = paymentGetVModel.circulated_gas.value
-        val circulated_gas: Double? = intent.getDoubleExtra("circulated_gas", 0.0)
+        // val calculated_gas: Double? = paymentGetVModel.circulated_gas.value
+        val calculated_gas: Double? = intent.getDoubleExtra("calculated_gas", 0.0)
 
         // 코인의 잔금 받기
         //val remain_amount: Double? = paymentGetVModel.remain_amount.value
@@ -75,7 +72,7 @@ class PaymentActivity2 : AppCompatActivity() {
         Log.d("**************************************************** To Address","to address: "+to_address)
         Log.d("***************************************************** To Address* Send Amount","send amount: "+send_amount)
         Log.d("***************************************************** To Address* Coin name","coin name: "+coin_name)
-        Log.d("***************************************************** To Address* Circulated Gas","circulated_gas: "+circulated_gas)
+        Log.d("***************************************************** To Address* Calculated Gas","calculated_gas: "+calculated_gas)
         Log.d("***************************************************** To Address* Remain Amount","remain_amount: "+remain_amount)
 
         binding.payAddress.setText(to_address)
@@ -86,7 +83,7 @@ class PaymentActivity2 : AppCompatActivity() {
         binding.coin2.setText(coin_name)
         binding.coin3.setText(coin_name)
 
-        binding.coinGas.setText(circulated_gas.toString())
+        binding.coinGas.setText(calculated_gas.toString())
 
         binding.coinBalance.setText(remain_amount.toString())
 
@@ -140,12 +137,12 @@ class PaymentActivity2 : AppCompatActivity() {
             Log.d("To Address","to address: "+to_address)
             Log.d("Send Amount", "send amount: "+ send_amount)
             Log.d("Coin name","coin name: "+coin_name)
-            Log.d("Circulated Gas","circulated_gas: "+circulated_gas)
+            Log.d("Calculated Gas","calculated_gas: "+calculated_gas)
             Log.d("Remain Amount","remain_amount: "+remain_amount)
             Log.d("Token","token: "+token)
 
-            if (id != null && token != null && to_address != null && circulated_gas != null && coin_name != null && send_amount != null) {
-                paymentVModel2.PostPayment(id, token, to_address, circulated_gas, coin_name, send_amount, this)
+            if (id != null && token != null && to_address != null && calculated_gas != null && coin_name != null && send_amount != null) {
+                paymentVModel2.PostPayment(id, token, to_address, calculated_gas, coin_name, send_amount, this)
 
             } else {
                 Toast.makeText(this, "Payment 2에서 3으로 서버에 정보 POST 하는 과정에서 null값이 포함되어있습니다.", Toast.LENGTH_SHORT).show()
