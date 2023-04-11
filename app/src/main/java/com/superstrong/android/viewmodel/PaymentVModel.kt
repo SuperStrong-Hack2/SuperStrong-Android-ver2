@@ -25,12 +25,12 @@ class PaymentVModel : ViewModel() {
     val sendamount = MutableLiveData<Double>()
     val coinname = MutableLiveData<String>()
     val token = MutableLiveData<String>()
-    val id = MutableLiveData<String>()
 
-    fun PostPayment(to_address: String, send_amount: Double, coin_name: String, token: String, id:String, context: Context) {
-        val payInfo1 = PayInfo1(to_address, send_amount, coin_name, token, id) // 전송할 데이터 모델 객체 생성
+    fun PostPayment(to_address: String, send_amount: Double, coin_name: String, token: String, context: Context) {
+        val payInfo1 = PayInfo1(to_address, send_amount, coin_name, token) // 전송할 데이터 모델 객체 생성
         Log.d("전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송", "ㅇㅇ" + payInfo1)
-        val call = RetrofitInstance.backendApiService.payment1(payInfo1) // POST 요청 보내기
+        val encryptedPayment = EncryptedData(AES256Util.aesEncode(Gson().toJson(payInfo1)))
+        val call = RetrofitInstance.backendApiService.payment1(encryptedPayment) // POST 요청 보내기
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
@@ -38,16 +38,24 @@ class PaymentVModel : ViewModel() {
                     val responseBody = response.body()?.toString()
                     val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
                     Log.i("리스폰스 (Payment1)","reponse:"+responseBody)
-                    if (jsonObject.get("validation").asString == "invalid input" ) {
+
+                    val data= jsonObject.get("e2e_res").asString
+                    Log.i("rww","data:"+data)
+                    val decoded_data=AES256Util.aesDecode(data)
+                    Log.i("rww","decoded_data:"+decoded_data)
+                    val jsonObject2 = Gson().fromJson(decoded_data, JsonObject::class.java)
+                    Log.i("rww","jsonObject2:"+jsonObject2)
+
+                    if (jsonObject2.get("validation").asString == "invalid input" ) {
                         Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
                     }
                     else {
                         val intent = Intent(context, PaymentActivity2::class.java)
-                        intent.putExtra("calculated_gas",jsonObject.get("calculated_gas").asDouble)
-                        intent.putExtra("send_amount",jsonObject.get("send_amount").asDouble)
-                        intent.putExtra("coin_name",jsonObject.get("coin_name").asString)
-                        intent.putExtra("to_address",jsonObject.get("to_address").asString)
-                        intent.putExtra("remain_amount",jsonObject.get("remain_amount").asDouble)
+                        intent.putExtra("calculated_gas",jsonObject2.get("calculated_gas").asDouble)
+                        intent.putExtra("send_amount",jsonObject2.get("send_amount").asDouble)
+                        intent.putExtra("coin_name",jsonObject2.get("coin_name").asString)
+                        intent.putExtra("to_address",jsonObject2.get("to_address").asString)
+                        intent.putExtra("remain_amount",jsonObject2.get("remain_amount").asDouble)
                         context.startActivity(intent)
                     }
                 } else {

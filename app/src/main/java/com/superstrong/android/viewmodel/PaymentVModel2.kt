@@ -23,19 +23,27 @@ class PaymentVModel2 : ViewModel() {
     val circulatedgas = MutableLiveData<Double>()
     val coinname = MutableLiveData<String>()
     val token = MutableLiveData<String>()
-    val id = MutableLiveData<String>()
 
-    fun PostPayment(to_address: String, send_amount: Double, coin_name: String, remain_amount: Double, circulated_gas: Double, token:String, id:String, context: Context) {
-        val payInfo2 = PayInfo2(to_address, send_amount, coin_name, remain_amount, circulated_gas, token, id) // 전송할 데이터 모델 객체 생성
+    fun PostPayment(to_address: String, send_amount: Double, coin_name: String, remain_amount: Double, circulated_gas: Double, token:String, context: Context) {
+        val payInfo2 = PayInfo2(to_address, send_amount, coin_name, remain_amount, circulated_gas, token) // 전송할 데이터 모델 객체 생성
         Log.d("액티비티 2에서 3으로 넘어갈때!!! 넘기는 값들 !!!!!!!!", "df" + payInfo2)
-        val call = RetrofitInstance.backendApiService.payment2(payInfo2) // POST 요청 보내기
+        val encryptedPayment = EncryptedData(AES256Util.aesEncode(Gson().toJson(payInfo2)))
+        val call = RetrofitInstance.backendApiService.payment2(encryptedPayment) // POST 요청 보내기
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful) {
 
                     val responseBody = response.body()?.toString()
-//                    val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
+                    val jsonObject = Gson().fromJson(responseBody, JsonObject::class.java)
+
+                    val data= jsonObject.get("e2e_res").asString
+                    Log.i("rww","data:"+data)
+                    val decoded_data=AES256Util.aesDecode(data)
+                    Log.i("rww","decoded_data:"+decoded_data)
+                    val jsonObject2 = Gson().fromJson(decoded_data, JsonObject::class.java)
+                    Log.i("rww","jsonObject2:"+jsonObject2)
+
 //                    Log.i("리스폰스","reponse:"+responseBody)
 //                    if (jsonObject.get("invalid input").asString == "no destination" && jsonObject.get("invalid input").asString != null) {
 //                        Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
@@ -43,6 +51,7 @@ class PaymentVModel2 : ViewModel() {
 //                        val intent = Intent(context, PaymentActivity3::class.java)
 //                        context.startActivity(intent)
 //                    }
+
                     Log.i("리스폰스","reponse:"+responseBody)
                     Log.i("성ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ","공ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ:")
                 } else {

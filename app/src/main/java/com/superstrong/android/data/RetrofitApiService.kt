@@ -18,7 +18,7 @@ public interface BackendApiService {
 
     // Payment1 -> Payment2 넘어갈 때 POST
     @POST("api/send_input")
-    fun payment1(@Body payInfo1: PayInfo1): Call<JsonObject>
+    fun payment1(@Body encryptedData: EncryptedData): Call<JsonObject>
 
     //Payment1 -> Payment2 넘어갈 때 GET
     @POST("api/send_input")
@@ -26,7 +26,7 @@ public interface BackendApiService {
 
     // Payment2 -> Payment3 넘어갈 때 POST
     @POST("api/send_input")
-    fun payment2(@Body payInfo2: PayInfo2): Call<JsonObject>
+    fun payment2(@Body encryptedData: EncryptedData): Call<JsonObject>
 
 
     @POST("api/register")
@@ -52,7 +52,7 @@ public interface BackendApiService {
 }
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://86a7-222-236-64-196.jp.ngrok.io"
+    private const val BASE_URL = "https://5235-222-236-64-196.jp.ngrok.io"
     private val gson: Gson = GsonBuilder().create()
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

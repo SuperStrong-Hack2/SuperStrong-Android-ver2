@@ -16,8 +16,6 @@ data class PayInfo2(  //POST
     val circulated_gas : Double,
     @SerializedName("remain_amount")
     val remain_amount : Double,
-    @SerializedName("id")
-    var id: String,
     @SerializedName("token")
     var token: String
 )

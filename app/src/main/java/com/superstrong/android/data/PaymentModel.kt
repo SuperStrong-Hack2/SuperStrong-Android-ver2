@@ -12,8 +12,6 @@ data class PayInfo1( //POST
     val send_amount: Double,
     @SerializedName("coin_name")
     val coin_name: String,
-    @SerializedName("id")
-    var id: String,
     @SerializedName("token")
     var token: String
 )
