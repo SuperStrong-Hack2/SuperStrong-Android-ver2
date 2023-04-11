@@ -18,6 +18,7 @@ import com.superstrong.android.databinding.ActivityPayment2Binding
 import com.superstrong.android.viewmodel.PaymentGetVModel
 import com.superstrong.android.viewmodel.PaymentVModel
 import com.superstrong.android.viewmodel.PaymentVModel2
+import org.json.JSONObject
 
 class PaymentActivity2 : AppCompatActivity() {
 
@@ -119,12 +120,22 @@ class PaymentActivity2 : AppCompatActivity() {
             val intent = Intent(this, PaymentActivity3::class.java)
 
             val sharedPref = getSharedPreferences("strong", Context.MODE_PRIVATE)
-            var token = sharedPref.getString("jwt_token","")
+            //var token = sharedPref.getString("jwt_token","")
+
+            var tokendjdjdjdj = sharedPref.getString("jwt_token","")
+            val jsonObject = JSONObject(tokendjdjdjdj)
+            var token = jsonObject.getString("token")
+
+
+            var id = sharedPref.getString("ID", "")
             if(token==null){
                 token = "nonetoken"
+            } else if(id==null){
+                id = "noneid"
             }
 
             Log.d("토크ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㄴ", ": "+ token)
+            Log.d("아이디ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ", ": "+ id)
 
             Log.d("To Address","to address: "+to_address)
             Log.d("Send Amount", "send amount: "+ send_amount)
@@ -133,18 +144,11 @@ class PaymentActivity2 : AppCompatActivity() {
             Log.d("Remain Amount","remain_amount: "+remain_amount)
             Log.d("Token","token: "+token)
 
-            if (to_address != null && send_amount != null && coin_name != null && circulated_gas != null && remain_amount != null && token != null) {
-                paymentVModel2.PostPayment(to_address, send_amount, coin_name, circulated_gas, remain_amount, token!!, this)
-                startActivity(intent)
+            if (id != null && token != null && to_address != null && circulated_gas != null && coin_name != null && send_amount != null) {
+                paymentVModel2.PostPayment(id, token, to_address, circulated_gas, coin_name, send_amount, this)
 
             } else {
-                Log.d("To Address","to address: "+to_address)
-                Log.d("Send Amount", "send amount:"+ send_amount)
-                Log.d("Coin name","coin name: "+coin_name)
-                Log.d("Circulated Gas","circulated_gas: "+circulated_gas)
-                Log.d("Remain Amount","remain_amount: "+remain_amount)
-                Log.d("Token","token: "+token)
-                Toast.makeText(this, "오류!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Payment 2에서 3으로 서버에 정보 POST 하는 과정에서 null값이 포함되어있습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -12,10 +12,12 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.JsonObject
 import com.superstrong.android.R
 import com.superstrong.android.databinding.ActivityPaymentBinding
 import com.superstrong.android.viewmodel.LoginViewModel
 import com.superstrong.android.viewmodel.PaymentVModel
+import org.json.JSONObject
 import java.sql.Types.NULL
 
 class PaymentActivity : AppCompatActivity() {
@@ -86,9 +88,15 @@ class PaymentActivity : AppCompatActivity() {
 
 
             val sharedPref = getSharedPreferences("strong", Context.MODE_PRIVATE)
-            var token = sharedPref.getString("jwt_token","")
+            var tokendjdjdjdj = sharedPref.getString("jwt_token","")
+            val jsonObject = JSONObject(tokendjdjdjdj)
+            var token = jsonObject.getString("token")
+
+            var id = sharedPref.getString("ID", "")
             if(token==null){
                 token = "nonetoken"
+            } else if(id==null){
+                id = "noneid"
             }
 
             Log.d("토크ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㄴ", ": "+ token)
@@ -102,14 +110,15 @@ class PaymentActivity : AppCompatActivity() {
             // 코인 종류 전달
             val coin_name: String? = paymentVModel.coinname.value
 
-            if (to_address != null && send_amount != null && coin_name != null && token != null) {
-                paymentVModel.PostPayment(to_address, send_amount, coin_name, token!!, this)
+            if (to_address != null && send_amount != null && coin_name != null && token != null && id != null) {
+                paymentVModel.PostPayment(to_address, send_amount, coin_name, token, id, this)
 
             } else {
                 Log.d("To Address","to address: "+to_address)
                 Log.d("Send Amount","send amount: "+send_amount)
                 Log.d("Coin name","coin name: "+coin_name)
                 Log.d("Token","token: "+token)
+                Log.d("ID","id: "+id)
                 Toast.makeText(this, "입력한 주소와 코인의 종류, 수량을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
         }

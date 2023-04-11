@@ -4,16 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil.setContentView
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.superstrong.android.data.*
-import com.superstrong.android.databinding.ActivityPayment2Binding
-import com.superstrong.android.databinding.ActivityPaymentBinding
-import com.superstrong.android.view.FindPassActivity
 import com.superstrong.android.view.PaymentActivity2
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,11 +21,12 @@ class PaymentVModel : ViewModel() {
     val coinname = MutableLiveData<String>()
     val token = MutableLiveData<String>()
 
-    fun PostPayment(to_address: String, send_amount: Double, coin_name: String, token: String, context: Context) {
-        val payInfo1 = PayInfo1(to_address, send_amount, coin_name, token) // 전송할 데이터 모델 객체 생성
+    fun PostPayment(to_address: String, send_amount: Double, coin_name: String, token: String, id: String, context: Context) {
+        val payInfo1 = PayInfo1(to_address, send_amount, coin_name, "", id) // 전송할 데이터 모델 객체 생성
         Log.d("전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송", "ㅇㅇ" + payInfo1)
-        val encryptedPayment = EncryptedData(AES256Util.aesEncode(Gson().toJson(payInfo1)))
+        val encryptedPayment = EncryptedPayment(AES256Util.aesEncode(Gson().toJson(payInfo1)), token)
         val call = RetrofitInstance.backendApiService.payment1(encryptedPayment) // POST 요청 보내기
+        Log.d("PaymentVModel", "전송완료!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
@@ -40,7 +36,8 @@ class PaymentVModel : ViewModel() {
                     Log.i("리스폰스 (Payment1)","reponse:"+responseBody)
 
                     val data= jsonObject.get("e2e_res").asString
-                    Log.i("rww","data:"+data)
+
+                    // 복호화
                     val decoded_data=AES256Util.aesDecode(data)
                     Log.i("rww","decoded_data:"+decoded_data)
                     val jsonObject2 = Gson().fromJson(decoded_data, JsonObject::class.java)

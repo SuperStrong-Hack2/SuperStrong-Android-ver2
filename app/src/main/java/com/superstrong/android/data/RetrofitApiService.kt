@@ -8,7 +8,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -18,15 +17,15 @@ public interface BackendApiService {
 
     // Payment1 -> Payment2 넘어갈 때 POST
     @POST("api/send_input")
-    fun payment1(@Body encryptedData: EncryptedData): Call<JsonObject>
+    fun payment1(@Body encryptedData: EncryptedPayment): Call<JsonObject>
 
     //Payment1 -> Payment2 넘어갈 때 GET
     @POST("api/send_input")
     fun paymentRsp1(@Body payInfoRsp1: PayInfoRsp1): Call<JsonObject>
 
     // Payment2 -> Payment3 넘어갈 때 POST
-    @POST("api/send_input")
-    fun payment2(@Body encryptedData: EncryptedData): Call<JsonObject>
+    @POST("api/send")
+    fun payment2(@Body encryptedData: EncryptedPayment): Call<JsonObject>
 
 
     @POST("api/register")
@@ -52,7 +51,7 @@ public interface BackendApiService {
 }
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://5235-222-236-64-196.jp.ngrok.io"
+    private const val BASE_URL = "https://1acf-222-236-64-196.ngrok-free.app"
     private val gson: Gson = GsonBuilder().create()
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

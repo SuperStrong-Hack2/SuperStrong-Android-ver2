@@ -13,5 +13,14 @@ data class PayInfo1( //POST
     @SerializedName("coin_name")
     val coin_name: String,
     @SerializedName("token")
-    var token: String
+    var token: String,
+    @SerializedName("id")
+    var id: String,
+
+)
+data class EncryptedPayment(
+    @SerializedName("e2e_req")
+    val e2e_req: String,
+    @SerializedName("token")
+    val token: String
 )
