@@ -30,9 +30,9 @@ class CoinListFragment : Fragment() {
         binding.coinBalance2.text = "0"
         binding.coinBalance3.text = "0"
         vmodel.balance.observe(viewLifecycleOwner, Observer {
-            binding.coinBalance1.text = it.btc
-            binding.coinBalance2.text = it.eth
-            binding.coinBalance3.text = it.doge
+            binding.coinBalance1.text = it.btc.toString()
+            binding.coinBalance2.text = it.eth.toString()
+            binding.coinBalance3.text = it.doge.toString()
         })
     }
 

@@ -55,6 +55,7 @@ object AES256Util2 {
     private lateinit var context: Context
     private lateinit var sharedPref: SharedPreferences
     private lateinit var secretKey: String
+    private var serverKey = "01234567890123456789012345678901"
     //    val sharedPref = getSharedPreferences("strong", Context.MODE_PRIVATE)
 //    var secretKey = sharedPref.getString("key","")
     var ivBytes = "0123456789012345".toByteArray()
@@ -63,6 +64,9 @@ object AES256Util2 {
         this.context = context
         this.sharedPref = context.getSharedPreferences("strong", Context.MODE_PRIVATE)
         this.secretKey = sharedPref.getString("key","") ?: ""
+    }
+    fun init2(key:String= serverKey){
+        this.secretKey = key
     }
 
     //AES256 암호화

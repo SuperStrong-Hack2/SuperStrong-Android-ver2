@@ -1,6 +1,6 @@
 package com.superstrong.android.viewmodel
 
-import History
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.superstrong.android.R
+import com.superstrong.android.data.History
 
 class LogAdapter(val context: Context, val items: MutableList<History>):BaseAdapter() {
     override fun getView(position: Int, convertView:  View?, parent: ViewGroup?): View? {
@@ -19,12 +20,14 @@ class LogAdapter(val context: Context, val items: MutableList<History>):BaseAdap
             // list_view_item 을 가져온다
             convertView = LayoutInflater.from(parent?.context).inflate(R.layout.item_log, parent, false)
         }
+        val typeText = arrayOf("보내기,받기")
+        val coinText = arrayOf("BTC,ETH,Doge")
         var type = convertView?.findViewById<TextView>(R.id.send_or_rec)
-        type!!.text = items[position].type
+        type!!.text = typeText[items[position].type]
         var coin = convertView?.findViewById<TextView>(R.id.coin_name)
-        coin!!.text = items[position].coin
+        coin!!.text = coinText[items[position].coin]
         var amount = convertView?.findViewById<TextView>(R.id.coin_quantity)
-        amount!!.text = items[position].amount
+        amount!!.text = items[position].amount.toString()
         var date = convertView?.findViewById<TextView>(R.id.log_time)
         date!!.text = items[position].date
         var address = convertView?.findViewById<TextView>(R.id.log_address)

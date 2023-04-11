@@ -56,6 +56,14 @@ data class E2eReq(
     val result :String
 )
 
+data class E2eReq2(
+    @SerializedName("e2e_req")
+    val result :String,
+
+    @SerializedName("token")
+    val token :String
+)
+
 data class E2eRes(
     @SerializedName("e2e_res")
     val encData :String

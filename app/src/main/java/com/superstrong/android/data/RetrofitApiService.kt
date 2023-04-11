@@ -48,6 +48,9 @@ public interface BackendApiService {
     @Headers("Content-Type: application/json")
     suspend fun newPass(@Body body: Password): Response<ChpassReponse>
 
+    @POST("api/main_asset")
+    @Headers("Content-Type: application/json")
+    suspend fun getBalance(@Body body: E2eReq2): Response<E2eRes>
 }
 
 object RetrofitInstance {

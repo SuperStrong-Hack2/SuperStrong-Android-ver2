@@ -1,8 +1,10 @@
 package com.superstrong.android.view
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -10,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.superstrong.android.databinding.ActivityWalletBinding
 import com.superstrong.android.viewmodel.LogVModel
-// import com.superstrong.android.databinding.ActivityWalletBinding
 import com.superstrong.android.viewmodel.TabFragmentAdapter
 
 class WalletActivity : FragmentActivity()  {
@@ -35,7 +36,17 @@ class WalletActivity : FragmentActivity()  {
         val pager = binding.viewPager
         pager.isNestedScrollingEnabled = true
         pager.adapter = pagerAdapter
-        viewModel.getData()
+
+        val sharedPref = getSharedPreferences("strong", Context.MODE_PRIVATE)
+        val id = sharedPref.getString("ID","")
+        val token = sharedPref.getString("jwt_token","")
+        val key = sharedPref.getString("key","")
+        Log.d("kkkkkkkkkkkkkkkkkkkk",id!!)
+        Log.d("kkkkkkkkkkkkkkkkkkkk",token!!)
+        Log.d("kkkkkkkkkkkkkkkkkkkk",key!!)
+
+
+        viewModel.getData(id!!, token!!, key!!)
 
         val tab = binding.tabLayout1
         TabLayoutMediator(tab, pager, {tab, position -> tab.text = tabTitles[position]}).attach()
@@ -59,8 +70,6 @@ class WalletActivity : FragmentActivity()  {
             val intent = Intent(this, SwapActivity::class.java)
             startActivity(intent)
         }
-        viewModel.getData()
-
         viewModel.loading.observe(this, Observer {
             if(it)
                 dialog.show()
