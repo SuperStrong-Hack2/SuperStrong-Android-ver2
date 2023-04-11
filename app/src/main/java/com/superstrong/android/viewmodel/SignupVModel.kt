@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 
 class SignupVModel : ViewModel() {
-    var stage = MutableLiveData<Int>(3) //fragment number
+    var stage = MutableLiveData<Int>(1) //fragment number
     var done = MutableLiveData<Boolean>(false) //signup done
     var unchecked = MutableLiveData<Boolean>(false) //unchecked term
     var error_code = MutableLiveData<Int>(0) //
