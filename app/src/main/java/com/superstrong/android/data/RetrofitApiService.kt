@@ -30,7 +30,7 @@ public interface BackendApiService {
 
     @POST("api/register")
     @Headers("Content-Type: application/json")
-    suspend fun signUp(@Body body: SignUpRequestBody): Response<SignUpResponseBody>
+    suspend fun signUp(@Body body: E2eReq): Response<E2eRes>
 
     /*@POST("api/auth")
     @Headers("Content-Type: application/json")
@@ -38,7 +38,7 @@ public interface BackendApiService {
 
     @POST("api/register/auth")
     @Headers("Content-Type: application/json")
-    suspend fun emailAuth(@Body body: AuthCode): Response<UserData>
+    suspend fun emailAuth(@Body body: E2eReq): Response<E2eRes>
 
     @POST("api/chpass")
     @Headers("Content-Type: application/json")

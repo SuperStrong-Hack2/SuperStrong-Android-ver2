@@ -5,24 +5,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.superstrong.android.R
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import com.superstrong.android.databinding.FragmentCoinlistBinding
+import com.superstrong.android.viewmodel.LogVModel
 
 class CoinListFragment : Fragment() {
+    private var _binding: FragmentCoinlistBinding? = null
+    private val binding get() = _binding!!
+    private val vmodel: LogVModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_coinlist, container, false)
+        _binding = FragmentCoinlistBinding.inflate(inflater,container, false)
+        return binding.root
     }
 
-    public fun newInstant() : CoinListFragment
-    {
-        val args = Bundle()
-        val frag = CoinListFragment()
-        frag.arguments = args
-        return frag
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.coinBalance1.text = "0"
+        binding.coinBalance2.text = "0"
+        binding.coinBalance3.text = "0"
+        vmodel.balance.observe(viewLifecycleOwner, Observer {
+            binding.coinBalance1.text = it.btc
+            binding.coinBalance2.text = it.eth
+            binding.coinBalance3.text = it.doge
+        })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

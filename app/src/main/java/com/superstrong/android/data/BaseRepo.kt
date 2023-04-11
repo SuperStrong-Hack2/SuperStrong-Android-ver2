@@ -1,6 +1,7 @@
 package com.superstrong.android.data
 
 import android.util.Log
+import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -49,3 +50,13 @@ abstract class BaseRepo() {
         }
     }
 }
+
+data class E2eReq(
+    @SerializedName("e2e_req")
+    val result :String
+)
+
+data class E2eRes(
+    @SerializedName("e2e_res")
+    val encData :String
+)

@@ -1,40 +1,49 @@
 package com.superstrong.android.view
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
-import com.superstrong.android.R
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.tabs.TabLayoutMediator
+import com.superstrong.android.databinding.ActivityWalletBinding
+import com.superstrong.android.viewmodel.LogVModel
 // import com.superstrong.android.databinding.ActivityWalletBinding
 import com.superstrong.android.viewmodel.TabFragmentAdapter
 
-class WalletActivity : AppCompatActivity() {
+class WalletActivity : FragmentActivity()  {
 
 //    private lateinit var binding: ActivityWalletBinding
+    private val tabTitles:Array<String> = arrayOf("잔금", "거래내용")
+    lateinit var binding : ActivityWalletBinding
+    lateinit var viewModel : LogVModel
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        binding = ActivityWalletBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-        setContentView(R.layout.activity_wallet)
+        binding = ActivityWalletBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        //setContentView(R.layout.activity_wallet)
+        viewModel = ViewModelProvider(this).get(LogVModel::class.java)
+        binding.viewModel = viewModel
+        val dialog = LoadingDialog(this)
 
-        val pagerAdapter = TabFragmentAdapter(supportFragmentManager)
+        val pagerAdapter = TabFragmentAdapter(this)
 
-        val pager = findViewById<ViewPager>(R.id.viewPager)
+        val pager = binding.viewPager
+        pager.isNestedScrollingEnabled = true
         pager.adapter = pagerAdapter
+        viewModel.getData()
 
-        val tab = findViewById<TabLayout>(R.id.tab_layout1)
-        tab.setupWithViewPager(pager)
+        val tab = binding.tabLayout1
+        TabLayoutMediator(tab, pager, {tab, position -> tab.text = tabTitles[position]}).attach()
 
-        val PaymentBtn : ImageView = findViewById(R.id.imgPayment)
-        val TimeCoinBtn : ImageView = findViewById(R.id.imgTimecoin)
-        val SwapBtn : ImageView = findViewById(R.id.imgSwap)
+
+        val PaymentBtn : ImageView = binding.imgPayment
+        val TimeCoinBtn : ImageView = binding.imgTimecoin
+        val SwapBtn : ImageView = binding.imgSwap
 
         PaymentBtn.setOnClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
@@ -50,6 +59,14 @@ class WalletActivity : AppCompatActivity() {
             val intent = Intent(this, SwapActivity::class.java)
             startActivity(intent)
         }
+        viewModel.getData()
+
+        viewModel.loading.observe(this, Observer {
+            if(it)
+                dialog.show()
+            else
+                dialog.dismiss()
+        })
 
 //
 //        binding.imgPayment.setOnClickListener {

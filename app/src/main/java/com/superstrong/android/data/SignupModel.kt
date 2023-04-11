@@ -2,7 +2,12 @@ package com.superstrong.android.data
 
 
 
+import android.util.Log
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import com.superstrong.android.viewmodel.AES256Util
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 
 
 data class SignUpRequestBody(
@@ -43,7 +48,32 @@ data class UserData(
 
 class Repository :BaseRepo() {
     val retrofitService = RetrofitInstance.backendApiService
-    suspend fun signupRequest(body: SignUpRequestBody) : Resource<SignUpResponseBody> = safeApiCall{retrofitService.signUp(body)}
-    suspend fun sendCode(body: AuthCode) : Resource<UserData> =  safeApiCall{retrofitService.emailAuth(body)}
+    //suspend fun signupRequest(body: SignUpRequestBody) : Resource<SignUpResponseBody> = safeApiCall{retrofitService.signUp(body)}
+    suspend fun signupRequest(body: SignUpRequestBody) : SignUpResponseBody?{
+        var gson = Gson()
+        val jsonString = gson.toJson(body)
+        Log.d("jjjjjjjjjjjjjjjj",jsonString)
+        val edata = E2eReq(AES256Util.aesEncode(jsonString))
+        val job = safeApiCall { retrofitService.signUp(edata) }
+        val res = job.data
+
+        if(res == null)
+            return null
+        else
+           return gson.fromJson(AES256Util.aesDecode(res.encData), SignUpResponseBody::class.java)
+    }
+
+    suspend fun sendCode(body: AuthCode) : UserData? {
+        var gson = Gson()
+        val jsonString = gson.toJson(body)
+        val edata = E2eReq(AES256Util.aesEncode(jsonString))
+        val job = safeApiCall { retrofitService.emailAuth(edata) }
+        val res = job.data
+
+        if(res == null)
+            return null
+        else
+            return gson.fromJson(AES256Util.aesDecode(res.encData), UserData::class.java)
+    }
 }
 

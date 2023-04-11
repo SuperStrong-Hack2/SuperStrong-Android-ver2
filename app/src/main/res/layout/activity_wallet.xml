@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.superstrong.android.viewmodel.LogVModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
@@ -32,8 +41,7 @@
             android:id="@+id/btn_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_left_arrow"
-            app:srcCompat="@drawable/ic_left_arrow"/>
+            android:src="@drawable/ic_left_arrow" />
 
         <TextView
             android:id="@+id/toolbar_title"
@@ -71,7 +79,7 @@
             android:layout_height="130dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/logo" />
+            android:src="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -94,7 +102,7 @@
                 android:background="@drawable/circle_background"
                 android:padding="15dp"
                 android:radius="80dp"
-                app:srcCompat="@drawable/ic_payment" />
+                    android:src="@drawable/ic_payment" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -122,7 +130,7 @@
                     android:layout_height="80dp"
                     android:background="@drawable/circle_background"
                     android:padding="15dp"
-                    app:srcCompat="@drawable/ic_chart" />
+                    android:src="@drawable/ic_chart" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -149,7 +157,7 @@
                     android:layout_height="80dp"
                     android:background="@drawable/circle_background"
                     android:padding="15dp"
-                    app:srcCompat="@drawable/ic_swap" />
+                    android:src="@drawable/ic_swap" />
 
                 <TextView
                     android:id="@+id/textView13"
@@ -165,9 +173,6 @@
 
         </LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -179,42 +184,44 @@
 
 
 
-                        <com.google.android.material.tabs.TabLayout
-                            android:id="@+id/tab_layout1"
-                            android:layout_width="400dp"
-                            android:layout_height="60dp"
-                            app:tabGravity="fill"
-                            app:tabIndicatorColor="@color/orange"
-                            app:tabIndicatorHeight="3dp"
-                            app:tabTextColor="@color/black"
-                            tools:ignore="MissingConstraints">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@color/orange"
+            app:tabIndicatorHeight="3dp"
+            app:tabTextColor="@color/black"
+            tools:ignore="MissingConstraints">
 
-                            <com.google.android.material.tabs.TabItem
-                                android:layout_width="200dp"
-                                android:layout_height="70dp"
-                                android:text="잔금" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:text="잔금" />
 
-                            <com.google.android.material.tabs.TabItem
-                                android:layout_width="200dp"
-                                android:layout_height="70dp"
-                                android:text="거래내역" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:text="거래내역" />
 
-                        </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.tabs.TabLayout>
 
 
 
-                        <androidx.viewpager.widget.ViewPager
+                        <androidx.viewpager2.widget.ViewPager2
                             android:layout_width="match_parent"
                             android:layout_height="500dp"
                             android:id="@+id/viewPager"
-                            app:layout_constraintTop_toBottomOf="@id/tab_layout1"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"/>
 
     </LinearLayout>
-</ScrollView>
+
 
     </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

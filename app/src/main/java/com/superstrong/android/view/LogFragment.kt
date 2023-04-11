@@ -5,25 +5,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.superstrong.android.R
+import androidx.fragment.app.activityViewModels
+import com.superstrong.android.databinding.FragmentLogBinding
+import com.superstrong.android.viewmodel.LogAdapter
+import com.superstrong.android.viewmodel.LogVModel
 
 public class LogFragment : Fragment() {
+    private var _binding: FragmentLogBinding? = null
+    private val binding get() = _binding!!
+    private val vmodel: LogVModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_log, container, false)
+        _binding = FragmentLogBinding.inflate(inflater,container, false)
+        return binding.root
     }
 
-    public fun newInstant() : LogFragment
-    {
-        val args = Bundle()
-        val frag = LogFragment()
-        frag.arguments = args
-        return frag
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val adapter = LogAdapter(requireContext(), vmodel.historyList)
+        binding.logList.adapter = adapter
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

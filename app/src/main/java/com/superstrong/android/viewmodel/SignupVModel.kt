@@ -1,8 +1,10 @@
 package com.superstrong.android.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
 import com.superstrong.android.data.*
 import kotlinx.coroutines.launch
 
@@ -15,6 +17,7 @@ class SignupVModel : ViewModel() {
     var loading = MutableLiveData<Boolean>(false)
     val repo = Repository()
     var myId :String? = null
+    lateinit var userData: UserData
 
     // 0 good
     // 1 ID is already exist
@@ -47,25 +50,28 @@ class SignupVModel : ViewModel() {
         val body = SignUpRequestBody(id,pass, mail, jumin,phone)
         loading.value = true
         viewModelScope.launch{
-            val res = repo.signupRequest(body).data
-            error_code.value = res?.result?.toInt()?: 8
-            loading.value = false
-            if(error_code.value == 0)
+            val res = repo.signupRequest(body)
+            error_code.value = res?.result?.toInt()?:8
+
+            if (error_code.value == 0)
                 stage.value = 3
+
+            loading.value = false
         }
     }
 
     fun sendCode(code:String){
         val body = AuthCode(code)
+
         loading.value = true
         viewModelScope.launch{
-            val res = repo.sendCode(body).data
-            auth_fail.value = res?.result?.toInt() ?: -1
-            myId = res?.id
+            val UserData = repo.sendCode(body)
+            auth_fail.value = UserData?.result?.toInt()?:-1
+            if (auth_fail.value == 1)
+                    stage.value = 4
             loading.value = false
-            if(auth_fail.value == 1)
-                stage.value = 4
         }
+
     }
 
     fun signupRequst(id:String, pass1:String, pass2:String, mail:String, ssn:String, phone:String){
