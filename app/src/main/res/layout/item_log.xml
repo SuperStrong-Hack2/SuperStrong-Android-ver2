@@ -45,7 +45,7 @@
 
                 <TextView
                     android:id="@+id/coin_name"
-                    android:layout_width="40dp"
+                    android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:textSize="20dp"
                     android:layout_marginLeft="15dp"
@@ -68,7 +68,7 @@
                         android:textSize="20dp"
                         android:text="Mar 17"
                         android:layout_marginLeft="14dp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/orange"/>
 
                     <TextView
                         android:id="@+id/log_text"

@@ -10,14 +10,13 @@ import kotlinx.coroutines.launch
 
 
 class SignupVModel : ViewModel() {
-    var stage = MutableLiveData<Int>(1) //fragment number
+    var stage = MutableLiveData<Int>(3) //fragment number
     var done = MutableLiveData<Boolean>(false) //signup done
     var unchecked = MutableLiveData<Boolean>(false) //unchecked term
     var error_code = MutableLiveData<Int>(0) //
     var loading = MutableLiveData<Boolean>(false)
     val repo = Repository()
-    var myId :String? = null
-    lateinit var userData: UserData
+    var userData : UserData? =null
 
     // 0 good
     // 1 ID is already exist
@@ -65,8 +64,8 @@ class SignupVModel : ViewModel() {
 
         loading.value = true
         viewModelScope.launch{
-            val UserData = repo.sendCode(body)
-            auth_fail.value = UserData?.result?.toInt()?:-1
+            userData = repo.sendCode(body)
+            auth_fail.value = userData?.result?.toInt()?:-1
             if (auth_fail.value == 1)
                     stage.value = 4
             loading.value = false

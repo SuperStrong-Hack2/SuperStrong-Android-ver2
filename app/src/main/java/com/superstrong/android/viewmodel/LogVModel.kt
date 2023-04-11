@@ -22,6 +22,10 @@ class LogVModel : ViewModel(){
             var job2 = async { delay(5000) }
             job1.await()
             job2.await()
+            balance.value = Balance("2","2","2")
+            historyList.clear()
+            historyList.addAll(listOf( History("받기", "doge", "1.0","23-01-01","0xsfdsfs"),
+                History("보내기", "doge", "1.0","23-01-01","0xsfdsfs")))
             loading.value = false
         }
     }
