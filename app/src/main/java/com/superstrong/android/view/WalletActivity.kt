@@ -48,6 +48,7 @@ class WalletActivity : FragmentActivity()  {
         Log.d("kkkkkkkkkkkkkkkkkkkk",token!!)
         Log.d("kkkkkkkkkkkkkkkkkkkk",key!!)
 
+        binding.toolbarTitle.setText(id)
 
         viewModel.getData(id!!, token!!, key!!)
 
