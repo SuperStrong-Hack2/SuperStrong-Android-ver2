@@ -89,7 +89,8 @@ class PaymentActivity : AppCompatActivity() {
 
             val sharedPref = getSharedPreferences("strong", Context.MODE_PRIVATE)
             var tokendjdjdjdj = sharedPref.getString("jwt_token","")
-            val jsonObject = JSONObject(tokendjdjdjdj)
+            val jsonObject = JSONObject()
+            jsonObject.put("token",tokendjdjdjdj)
             var token = jsonObject.getString("token")
 
             var id = sharedPref.getString("ID", "")

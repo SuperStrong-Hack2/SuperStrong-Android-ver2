@@ -31,7 +31,7 @@ class LogAdapter(val context: Context, val items: JSONArray):BaseAdapter() {
         var date = convertView?.findViewById<TextView>(R.id.log_time)
         date!!.text = jsonData.getString("date")
         var address = convertView?.findViewById<TextView>(R.id.log_address)
-        address!!.text = jsonData.getString("interaction_id")
+        address!!.text = jsonData.getString("interaction_address")
         return convertView
 
     }

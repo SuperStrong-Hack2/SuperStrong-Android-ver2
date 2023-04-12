@@ -93,8 +93,10 @@ class WalletActivity : FragmentActivity()  {
                         })
                 builder.show()
             }
-            else if(it == 0)
+            else if(it == -1)
                 Toast.makeText(this, "서버와의 통신이 원활하지 않습니다", Toast.LENGTH_SHORT).show()
+            else if(it == 0)
+                Toast.makeText(this, "현제 거래내역이 없습니다", Toast.LENGTH_SHORT).show()
         })
 
 

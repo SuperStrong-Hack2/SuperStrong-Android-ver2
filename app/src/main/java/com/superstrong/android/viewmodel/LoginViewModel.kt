@@ -14,6 +14,8 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.superstrong.android.data.EncryptedData
 import com.superstrong.android.view.WalletActivity
+import org.json.JSONObject
+
 class LoginViewModel : ViewModel() {
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
@@ -41,7 +43,7 @@ class LoginViewModel : ViewModel() {
                     } else {
                         // ---------------------로그인 성공 시 처리할 코드---------------------
                         with(sharedPref.edit()) {
-                            putString("jwt_token", decoded_data)
+                            putString("jwt_token", JSONObject(decoded_data).getString("token"))
                             putString("ID", username)
                             apply()
                         }

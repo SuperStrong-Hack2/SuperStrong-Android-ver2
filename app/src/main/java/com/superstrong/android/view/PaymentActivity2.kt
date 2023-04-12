@@ -120,7 +120,8 @@ class PaymentActivity2 : AppCompatActivity() {
             //var token = sharedPref.getString("jwt_token","")
 
             var tokendjdjdjdj = sharedPref.getString("jwt_token","")
-            val jsonObject = JSONObject(tokendjdjdjdj)
+            val jsonObject = JSONObject()
+            jsonObject.put("token",tokendjdjdjdj)
             var token = jsonObject.getString("token")
 
 

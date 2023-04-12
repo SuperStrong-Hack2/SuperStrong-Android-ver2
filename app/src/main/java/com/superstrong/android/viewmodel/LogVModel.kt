@@ -31,7 +31,7 @@ class LogVModel : ViewModel(){
             val history = job2.await()
             balance.value=bal?:Balance(-1,-1.0,-1.0,-1.0)
             Log.d("JJJJJJJJJJJJJJJJJ",history?.toString()?:"null")
-            valid.value = history?.getString("res")?.toInt() ?: 0
+            valid.value = history?.getString("res")?.toInt() ?: -1
 
 
             if(valid.value == 1)

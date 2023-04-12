@@ -38,6 +38,8 @@ data class History(
     val interID:String = "SSS",
     @SerializedName("status")
     val status:String = "NONE",
+    @SerializedName("date")
+    val date:String = "NONE"
 )
 
 
