@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.superstrong.android.data.*
+import com.superstrong.android.view.LoginActivity
 import com.superstrong.android.view.PaymentActivity2
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,8 +51,13 @@ class PaymentVModel : ViewModel() {
 
                     if (jsonObject2.get("res").asString == "0" ) {
                         Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        val intentLogin = Intent(context, LoginActivity::class.java)
+                        context.startActivity(intentLogin)
+
                     } else if(jsonObject2.get("res").asString == "2" ){
                         Toast.makeText(context, "토큰이 유효하지 않습니다.", Toast.LENGTH_SHORT).show()
+                        val intentLogin = Intent(context, LoginActivity::class.java)
+                        context.startActivity(intentLogin)
                     }
                     else {
                         val intent = Intent(context, PaymentActivity2::class.java)
