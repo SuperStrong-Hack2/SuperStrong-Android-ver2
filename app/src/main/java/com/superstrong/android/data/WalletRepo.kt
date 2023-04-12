@@ -39,7 +39,9 @@ data class History(
     @SerializedName("status")
     val status:String = "NONE",
     @SerializedName("date")
-    val date:String = "NONE"
+    val date:String = "NONE",
+    @SerializedName("interaction_address")
+    val address:String = "NONE"
 )
 
 
