@@ -87,6 +87,7 @@
                 android:ems="10"
                 android:hint="주소를 입력해주세요."
                 android:inputType="textPersonName"
+                android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.153"
                 app:layout_constraintStart_toEndOf="@+id/textView3"

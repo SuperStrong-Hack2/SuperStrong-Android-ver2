@@ -1,11 +1,14 @@
 package com.superstrong.android.view
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -76,6 +79,22 @@ class WalletActivity : FragmentActivity()  {
             else
                 dialog.dismiss()
         })
+        viewModel.valid.observe(this, Observer {
+            var errorMesage = arrayOf("토큰이 만료되었거나 부적절합니다.", "서버와의 통신 과정에서 오류가 발생했습니다.")
+            val builder = AlertDialog.Builder(this)
+            if(it != 1) {
+                builder.setTitle("지갑 조회 실패")
+                    .setMessage(errorMesage[-it])
+                    .setPositiveButton("돌아가기",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            val intentLogin = Intent(this,LoginActivity::class.java)
+                            startActivity(intentLogin)
+                            finish()
+                        })
+                builder.show()
+            }
+        })
+
 
 //
 //        binding.imgPayment.setOnClickListener {

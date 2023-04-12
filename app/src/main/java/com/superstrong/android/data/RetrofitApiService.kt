@@ -51,10 +51,14 @@ public interface BackendApiService {
     @POST("api/main_asset")
     @Headers("Content-Type: application/json")
     suspend fun getBalance(@Body body: E2eReq2): Response<E2eRes>
+
+    @POST("/api/main_history")
+    @Headers("Content-Type: application/json")
+    suspend fun getHistory(@Body body: E2eReq2): Response<E2eRes>
 }
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://1acf-222-236-64-196.ngrok-free.app"
+    private const val BASE_URL = "https://58df-222-236-64-196.ngrok-free.app"
     private val gson: Gson = GsonBuilder().create()
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

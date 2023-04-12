@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.superstrong.android.databinding.FragmentLogBinding
 import com.superstrong.android.viewmodel.LogAdapter
 import com.superstrong.android.viewmodel.LogVModel
+import org.json.JSONArray
 
 public class LogFragment : Fragment() {
     private var _binding: FragmentLogBinding? = null
@@ -26,8 +27,8 @@ public class LogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = LogAdapter(requireContext(), vmodel.historyList)
-        binding.logList.adapter = adapter
+        binding.logList.adapter = LogAdapter(requireContext(), vmodel.historyData)
+
     }
 
     override fun onDestroyView() {

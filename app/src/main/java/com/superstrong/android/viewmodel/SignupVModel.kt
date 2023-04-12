@@ -1,10 +1,8 @@
 package com.superstrong.android.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
 import com.superstrong.android.data.*
 import kotlinx.coroutines.launch
 

@@ -52,7 +52,6 @@ class Repository :BaseRepo() {
     suspend fun signupRequest(body: SignUpRequestBody) : SignUpResponseBody?{
         var gson = Gson()
         val jsonString = gson.toJson(body)
-        Log.d("jjjjjjjjjjjjjjjj",jsonString)
         val edata = E2eReq(AES256Util1.aesEncode(jsonString))
         val job = safeApiCall { retrofitService.signUp(edata) }
         val res = job.data
