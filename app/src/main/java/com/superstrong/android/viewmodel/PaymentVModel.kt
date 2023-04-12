@@ -47,8 +47,10 @@ class PaymentVModel : ViewModel() {
                     val jsonObject2 = Gson().fromJson(decoded_data, JsonObject::class.java)
                     Log.i("rww","jsonObject2:"+jsonObject2)
 
-                    if (jsonObject2.get("validation").asString == "invalid input" ) {
+                    if (jsonObject2.get("res").asString == "0" ) {
                         Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    } else if(jsonObject2.get("res").asString == "2" ){
+                        Toast.makeText(context, "토큰이 유효하지 않습니다.", Toast.LENGTH_SHORT).show()
                     }
                     else {
                         val intent = Intent(context, PaymentActivity2::class.java)

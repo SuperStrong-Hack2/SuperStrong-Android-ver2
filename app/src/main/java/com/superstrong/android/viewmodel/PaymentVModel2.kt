@@ -50,9 +50,12 @@ class PaymentVModel2 : ViewModel() {
 
                     Log.i("리스폰스","reponse:"+responseBody)
 
-                    if (jsonObject2.get("res").asString == "fail" || jsonObject2.get("res").asString == null ) {
+                    if (jsonObject2.get("res").asString == "0" || jsonObject2.get("res").asString == null ) {
                         Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                    } else {
+                    } else if(jsonObject2.get("res").asString == "2"){
+                        Toast.makeText(context, "유효하지 않은 토큰입니다.", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
                         val intent = Intent(context, PaymentActivity3::class.java)
                         context.startActivity(intent)
                     }
