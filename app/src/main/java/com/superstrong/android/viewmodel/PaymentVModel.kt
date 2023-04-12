@@ -51,8 +51,6 @@ class PaymentVModel : ViewModel() {
 
                     if (jsonObject2.get("res").asString == "0" ) {
                         Toast.makeText(context, "송금에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                        val intentLogin = Intent(context, LoginActivity::class.java)
-                        context.startActivity(intentLogin)
 
                     } else if(jsonObject2.get("res").asString == "2" ){
                         Toast.makeText(context, "토큰이 유효하지 않습니다.", Toast.LENGTH_SHORT).show()
