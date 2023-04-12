@@ -80,11 +80,11 @@ class WalletActivity : FragmentActivity()  {
                 dialog.dismiss()
         })
         viewModel.valid.observe(this, Observer {
-            var errorMesage = arrayOf("토큰이 만료되었거나 부적절합니다.", "서버와의 통신 과정에서 오류가 발생했습니다.")
+            var errorMesage = arrayOf("서버와의 통신 과정에서 오류가 발생했습니다.","","토큰이 만료되었거나 부적절합니다.")
             val builder = AlertDialog.Builder(this)
-            if(it != 1) {
+            if(it == 2) {
                 builder.setTitle("지갑 조회 실패")
-                    .setMessage(errorMesage[-it])
+                    .setMessage(errorMesage[it])
                     .setPositiveButton("돌아가기",
                         DialogInterface.OnClickListener { dialog, id ->
                             val intentLogin = Intent(this,LoginActivity::class.java)
@@ -93,6 +93,8 @@ class WalletActivity : FragmentActivity()  {
                         })
                 builder.show()
             }
+            else if(it == 0)
+                Toast.makeText(this, "서버와의 통신이 원활하지 않습니다", Toast.LENGTH_SHORT).show()
         })
 
 
