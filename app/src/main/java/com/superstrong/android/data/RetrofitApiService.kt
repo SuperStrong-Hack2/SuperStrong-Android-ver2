@@ -58,7 +58,7 @@ public interface BackendApiService {
 }
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://58df-222-236-64-196.ngrok-free.app"
+    private const val BASE_URL = "https://03db-222-236-64-196.ngrok-free.app"
     private val gson: Gson = GsonBuilder().create()
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

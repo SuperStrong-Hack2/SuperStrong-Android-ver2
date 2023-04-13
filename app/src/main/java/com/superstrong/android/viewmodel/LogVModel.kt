@@ -36,8 +36,11 @@ class LogVModel : ViewModel(){
 
             if(valid.value == 1)
                 historyData = history!!.getJSONArray("history")
+            else
+                historyData = JSONArray(arrayOf(JSONObject(Gson().toJson(History()))))
 
             loading.value = false
+            Log.d("JJJJJJJJJJJJJJJJJ",historyData.length().toString())
         }
     }
 

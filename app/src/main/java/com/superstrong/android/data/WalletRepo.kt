@@ -50,6 +50,7 @@ class WalletRepo :BaseRepo() {
     val retrofitService = RetrofitInstance.backendApiService
     suspend fun getBalance(body: Id, token:String, key:String) :Balance?{
         AES256Util2.init2(key)
+        //AES256Util2.init2()
         val req = E2eReq2(AES256Util2.aesEncode(Gson().toJson(body)), token)
         var job = safeApiCall { retrofitService.getBalance(req) }
         val res = job.data
@@ -61,6 +62,7 @@ class WalletRepo :BaseRepo() {
     }
     suspend fun getHistory(body: Id, token:String, key:String):JSONObject?{
         AES256Util2.init2(key)
+        //AES256Util2.init2()
         val req = E2eReq2(AES256Util2.aesEncode(Gson().toJson(body)), token)
         var job = safeApiCall { retrofitService.getHistory(req) }
         val res = job.data

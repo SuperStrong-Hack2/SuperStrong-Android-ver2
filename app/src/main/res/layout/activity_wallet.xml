@@ -68,9 +68,10 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_line"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_line"
+        app:layout_constraintBottom_toTopOf="@id/navigationView"
         tools:layout_editor_absoluteX="0dp">
 
         <ImageView
@@ -90,29 +91,29 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <ImageView
-                android:id="@+id/imgPayment"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@drawable/circle_background"
-                android:padding="15dp"
-                android:radius="80dp"
+                    android:id="@+id/imgPayment"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/circle_background"
+                    android:padding="15dp"
+                    android:radius="80dp"
                     android:src="@drawable/ic_payment" />
 
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="송금"
                     android:textColor="@color/black"
-                    android:text="송금" />
+                    android:textSize="20dp" />
 
             </LinearLayout>
 
@@ -120,8 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -136,11 +137,11 @@
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="시세 확인"
                     android:textColor="@color/black"
-                    android:text="시세 확인" />
+                    android:textSize="20dp" />
 
             </LinearLayout>
 
@@ -163,28 +164,24 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="스왑"
                     android:textColor="@color/black"
-                    android:text="스왑" />
+                    android:textSize="20dp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-
-
-        <com.google.android.material.tabs.TabLayout
+            <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -207,17 +204,21 @@
                 android:text="거래내역" />
 
         </com.google.android.material.tabs.TabLayout>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                app:layout_constraintTop_toBottomOf="@id/tab_layout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="true"
+                android:orientation="horizontal"
+                android:layout_marginTop="70dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:ignore="MissingConstraints">
+
+            </androidx.viewpager2.widget.ViewPager2>
 
 
-
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:layout_width="match_parent"
-                            android:layout_height="500dp"
-                            android:id="@+id/viewPager"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"/>
-
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>
