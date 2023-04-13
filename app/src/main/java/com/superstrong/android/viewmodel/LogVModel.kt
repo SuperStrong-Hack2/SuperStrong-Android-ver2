@@ -30,7 +30,7 @@ class LogVModel : ViewModel(){
             val bal = job1.await()
             val history = job2.await()
             balance.value=bal?:Balance(-1,-1.0,-1.0,-1.0)
-            Log.d("JJJJJJJJJJJJJJJJJ",history?.toString()?:"null")
+
             valid.value = history?.getString("res")?.toInt() ?: -1
 
 
@@ -40,7 +40,7 @@ class LogVModel : ViewModel(){
                 historyData = JSONArray(arrayOf(JSONObject(Gson().toJson(History()))))
 
             loading.value = false
-            Log.d("JJJJJJJJJJJJJJJJJ",historyData.length().toString())
+
         }
     }
 
