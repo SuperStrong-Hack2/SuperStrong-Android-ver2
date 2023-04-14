@@ -104,7 +104,7 @@ class PaymentActivity : AppCompatActivity() {
 
             // 코인 전송할 주소 전달
             //val to_address: String? = paymentVModel.toaddress.value
-            val to_address: String? = "4gpi5g2493l8503in3p6kx72mqd93o1w"
+            val to_address: String? = "i0w93c6v5zic8sl9853gcyd3ob7h90t7"
 
             // 전송할 코인의 수량 전달
             val send_amount: Double? = paymentVModel.sendamount.value
