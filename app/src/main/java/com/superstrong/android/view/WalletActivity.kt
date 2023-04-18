@@ -12,7 +12,9 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayoutMediator
+import com.superstrong.android.R
 import com.superstrong.android.databinding.ActivityWalletBinding
 import com.superstrong.android.viewmodel.LogVModel
 import com.superstrong.android.viewmodel.TabFragmentAdapter
@@ -33,7 +35,8 @@ class WalletActivity : FragmentActivity()  {
         viewModel = ViewModelProvider(this).get(LogVModel::class.java)
         binding.viewModel = viewModel
         val dialog = LoadingDialog(this)
-
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigationView)
+        bottomNavigationView.setOnNavigationItemSelectedListener(MyNavigationListener(this))
         val pagerAdapter = TabFragmentAdapter(this)
 
         val pager = binding.viewPager
