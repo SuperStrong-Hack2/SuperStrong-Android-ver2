@@ -47,8 +47,7 @@ class Signup2Fragment : Fragment() {
 
         binding.confirmButton.setOnClickListener{ //확인 버튼 서버에 데이터 보내기
             vmodel.signupRequst(binding.ideditText.text.toString(), binding.passeditText.text.toString(),
-                binding.passeditText2.text.toString(), binding.emailedit.text.toString(),
-                binding.regedit.text.toString()+binding.reg2edit.text.toString(), binding.numedit.text.toString())
+                binding.passeditText2.text.toString(), binding.emailedit.text.toString(), binding.numedit.text.toString())
         }
     }
 

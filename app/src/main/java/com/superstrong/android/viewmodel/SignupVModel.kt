@@ -43,8 +43,8 @@ class SignupVModel : ViewModel() {
         if(unchecked.value == false)
             stage.value=2
     }
-    fun signupRequest(id:String, pass:String, mail:String, jumin:String, phone:String){
-        val body = SignUpRequestBody(id,pass, mail, jumin,phone)
+    fun signupRequest(id:String, pass:String, mail:String, phone:String){
+        val body = SignUpRequestBody(id,pass, mail, phone)
         loading.value = true
         viewModelScope.launch{
             val res = repo.signupRequest(body)
@@ -71,14 +71,14 @@ class SignupVModel : ViewModel() {
 
     }
 
-    fun signupRequst(id:String, pass1:String, pass2:String, mail:String, ssn:String, phone:String){
+    fun signupRequst(id:String, pass1:String, pass2:String, mail:String, phone:String){
 
-        if(id =="" || pass1 == "" || pass2 == "" || mail == "" || ssn == "" || phone == "")
+        if(id =="" || pass1 == "" || pass2 == "" || mail == "" || phone == "")
             error_code.value=6
         else if(pass1 != pass2)
             error_code.value=7
         else {
-            signupRequest(id,pass1, mail,ssn,phone)
+            signupRequest(id,pass1, mail, phone)
         }
     }
 

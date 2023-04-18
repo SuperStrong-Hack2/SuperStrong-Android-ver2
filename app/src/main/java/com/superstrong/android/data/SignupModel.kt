@@ -17,8 +17,6 @@ data class SignUpRequestBody(
     val pw:String,
     @SerializedName("email")
     val email:String,
-    @SerializedName("ssn")
-    val ssn:String,
     @SerializedName("phone_num")
     val phone_num: String
 )

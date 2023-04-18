@@ -103,8 +103,8 @@ class PaymentActivity : AppCompatActivity() {
             Log.d("토크ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㄴ", ": "+ token)
 
             // 코인 전송할 주소 전달
-            //val to_address: String? = paymentVModel.toaddress.value
-            val to_address: String? = "i0w93c6v5zic8sl9853gcyd3ob7h90t7"
+            val to_address: String? = paymentVModel.toaddress.value
+            //val to_address: String? = "i0w93c6v5zic8sl9853gcyd3ob7h90t7"
 
             // 전송할 코인의 수량 전달
             val send_amount: Double? = paymentVModel.sendamount.value
@@ -161,8 +161,6 @@ class PaymentActivity : AppCompatActivity() {
                 paymentVModel.toaddress.value = ""
             }
         }
-
-
     }
 
 }
