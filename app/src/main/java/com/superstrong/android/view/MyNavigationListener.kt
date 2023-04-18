@@ -13,7 +13,7 @@ class MyNavigationListener(private val context: Context) : BottomNavigationView.
                 return true
             }
             R.id.navigation_account -> {
-                context.startActivity(Intent(context, SignupActivity::class.java))
+                context.startActivity(Intent(context, AccountManageActivity::class.java))
                 return true
             }
             else -> return false

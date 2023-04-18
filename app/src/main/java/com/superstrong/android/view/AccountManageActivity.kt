@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.superstrong.android.R
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class AccountManageActivity : AppCompatActivity() {
@@ -20,7 +21,8 @@ class AccountManageActivity : AppCompatActivity() {
 
         val qna = findViewById<TextView>(R.id.manage_qna)
         val intentQna = Intent(this,ChpasswdActivity::class.java)
-
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigationView)
+        bottomNavigationView.setOnNavigationItemSelectedListener(MyNavigationListener(this))
         chpass.setOnClickListener {
             startActivity(intentChpass)
         }
