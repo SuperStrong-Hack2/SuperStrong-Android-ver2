@@ -42,6 +42,7 @@ class WalletActivity : FragmentActivity()  {
 
         val sharedPref = getSharedPreferences("strong", Context.MODE_PRIVATE)
         val id = sharedPref.getString("ID","")
+        val pub_ad = sharedPref.getString("pub_ad","")
         val token = sharedPref.getString("jwt_token","")
         val key = sharedPref.getString("key","")
         Log.d("kkkkkkkkkkkkkkkkkkkk",id!!)
@@ -49,6 +50,7 @@ class WalletActivity : FragmentActivity()  {
         Log.d("kkkkkkkkkkkkkkkkkkkk",key!!)
 
         binding.toolbarTitle.setText(id)
+        binding.pubAddress.setText(pub_ad)
 
         viewModel.getData(id!!, token!!, key!!)
 

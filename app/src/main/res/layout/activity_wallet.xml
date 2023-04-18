@@ -74,12 +74,21 @@
         app:layout_constraintBottom_toTopOf="@id/navigationView"
         tools:layout_editor_absoluteX="0dp">
 
+        <TextView
+            android:id="@+id/pub_address"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="주소" />
+
         <ImageView
             android:id="@+id/ic_main"
             android:layout_width="200dp"
             android:layout_height="130dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/logo" />
 
         <LinearLayout
@@ -175,7 +184,7 @@
         </LinearLayout>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -25,14 +25,12 @@ class PaymentVModel : ViewModel() {
 
     fun PostPayment(to_address: String, send_amount: Double, coin_name: String, token: String, id: String, context: Context) {
         val payInfo1 = PayInfo1(to_address, send_amount, coin_name, "", id) // 전송할 데이터 모델 객체 생성
-        Log.d("전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송전송", "ㅇㅇ" + payInfo1)
 
         // AES256Util 클래스 초기화
         AES256Util2.init(context)
 
         val encryptedPayment = EncryptedPayment(AES256Util2.aesEncode(Gson().toJson(payInfo1)), token)
         val call = RetrofitInstance.backendApiService.payment1(encryptedPayment) // POST 요청 보내기
-        Log.d("PaymentVModel", "전송완료!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
