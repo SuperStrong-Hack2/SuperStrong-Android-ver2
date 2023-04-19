@@ -14,6 +14,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         val imageView = findViewById<ImageView>(R.id.imageView)
+
         Glide.with(this).load(R.drawable.movelog).into(imageView)
         // 5초 후 LoginActivity로 이동하고 현재 Activity를 종료
         Handler().postDelayed({
