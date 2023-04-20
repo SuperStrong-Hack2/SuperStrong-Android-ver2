@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.superstrong.android.databinding.FragmentCoinlistBinding
 import com.superstrong.android.viewmodel.LogVModel
+import kotlin.math.roundToInt
 
 class CoinListFragment : Fragment() {
     private var _binding: FragmentCoinlistBinding? = null
@@ -30,9 +31,9 @@ class CoinListFragment : Fragment() {
         binding.coinBalance2.text = "0"
         binding.coinBalance3.text = "0"
         vmodel.balance.observe(viewLifecycleOwner, Observer {
-            binding.coinBalance1.text = it.btc.toString()
-            binding.coinBalance2.text = it.eth.toString()
-            binding.coinBalance3.text = it.doge.toString()
+            binding.coinBalance1.text = ((it.btc* 10000.0).roundToInt() / 10000.0).toString()
+            binding.coinBalance2.text = ((it.eth* 10000.0).roundToInt() / 10000.0).toString()
+            binding.coinBalance3.text = ((it.doge* 10000.0).roundToInt() / 10000.0).toString()
         })
     }
 

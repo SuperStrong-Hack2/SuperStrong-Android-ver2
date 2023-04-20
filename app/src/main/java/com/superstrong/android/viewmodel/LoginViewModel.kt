@@ -47,7 +47,9 @@ class LoginViewModel : ViewModel() {
                             putString("ID", username)
                             apply()
                         }
-
+                        val keyname = sharedPref.getString("key_id","")
+                        if(username != keyname)
+                            Log.i("kkkkkkkkkkkkkkkkkkkkkkkkkkkkeykeyekyeykeykeye", "require key")
 
                         val intent = Intent(context, WalletActivity::class.java)
                         context.startActivity(intent)

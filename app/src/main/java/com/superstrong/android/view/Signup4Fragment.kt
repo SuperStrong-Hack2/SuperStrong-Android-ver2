@@ -36,6 +36,7 @@ class Signup4Fragment : Fragment() {
             putString("id", vmodel.userData!!.id)
             putString("key", vmodel.userData!!.key)
             putString("pub_ad", vmodel.userData!!.pubAddress)
+            putString("key_id", vmodel.userData!!.id)
             apply()
         }
         binding.confirmButton.setOnClickListener{

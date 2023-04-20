@@ -116,6 +116,7 @@ object RetrofitInstance {
             "7bxR2zyaXHzON7xfXvGDBkpwt6wCxUXMJqUi2Jo=\n" +
             "-----END CERTIFICATE-----"
 
+
     private val certInputStream = ByteArrayInputStream(certString.toByteArray())
 
     lateinit var certFactory: CertificateFactory
