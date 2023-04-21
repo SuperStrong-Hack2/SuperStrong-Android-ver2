@@ -95,25 +95,25 @@ object RetrofitInstance {
 
 
     private const val certString = "-----BEGIN CERTIFICATE-----\n" +
-            "MIIDeTCCAmGgAwIBAgIIdIYm2L66sOMwDQYJKoZIhvcNAQELBQAwazELMAkGA1UE\n" +
-            "BhMCa28xEDAOBgNVBAgTB1Vua25vd24xEDAOBgNVBAcTB1Vua25vd24xFDASBgNV\n" +
-            "BAoTC3N1cGVyc3Ryb25nMRAwDgYDVQQLEwdVbmtub3duMRAwDgYDVQQDEwdVbmtu\n" +
-            "b3duMB4XDTIzMDQxOTEzNTk0NFoXDTMzMDQxNjEzNTk0NFowazELMAkGA1UEBhMC\n" +
-            "a28xEDAOBgNVBAgTB1Vua25vd24xEDAOBgNVBAcTB1Vua25vd24xFDASBgNVBAoT\n" +
-            "C3N1cGVyc3Ryb25nMRAwDgYDVQQLEwdVbmtub3duMRAwDgYDVQQDEwdVbmtub3du\n" +
-            "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwgQs4XHHZFSolBAlv7tL\n" +
-            "mUsnnZZOaGQjgNaB/ct15ZHYoHP3LvP5FnbZlR+l4TK1VUixDeixT7LVS2hSZfrH\n" +
-            "4HuD5QhmxDE/KabQU5YUUnaS3glNQAmPxLRuBcEigYv8vwQv14mdFxNrnq9fSHQE\n" +
-            "tFedv0wDIU0ggKSZVGj3xUni8oIeJNi55IqBViePwUsAvn5y8ml1lMoKndeO8wmD\n" +
-            "VN9VeMyqA7WTxavzRizW1IBOAFB+3xP8LdDFXhm+TmFJHkVlxebKMo7BZOiwQGpX\n" +
-            "q9Th4QSCVb/GGmRhBM3miyY1cvU8ygBibzulo/6U34IuLrkBUXX+g45r2A4trpdd\n" +
-            "WwIDAQABoyEwHzAdBgNVHQ4EFgQUmH4CjxH2V8mMsJHbMP3yYsNb22owDQYJKoZI\n" +
-            "hvcNAQELBQADggEBACC9+u/hYr8VaIlNymVaNihJQoBSNF9lIj211Zx0FG6GN2Ze\n" +
-            "RSkJ2gnAyli9h+tihpv7TeagJGi+9cpKDHu/t/Rn22zxYVFAPge5fXTk5ETICL3g\n" +
-            "sJV9CoJWYUVgRY6FaQ77o5KlUx786hajzNolTEwuAQk6QHHgrdFph2nUzhcMccSl\n" +
-            "/REckWUXcvykp2I5gVDvZN2bvdyUMdj/+coz79etr1pb1Ha8L1pEbl2r/8vCl4Wn\n" +
-            "4HuuMUfOwponyrl3X9UWIdo6e/Z1oQqojHfpx8J2xI1rEWAc45QdOWde2PcB3xk+\n" +
-            "7bxR2zyaXHzON7xfXvGDBkpwt6wCxUXMJqUi2Jo=\n" +
+            "MIIDdTCCAl2gAwIBAgIEMX6TrDANBgkqhkiG9w0BAQsFADBrMQswCQYDVQQGEwJr\n" +
+            "bzEQMA4GA1UECBMHVW5rbm93bjEQMA4GA1UEBxMHVW5rbm93bjEUMBIGA1UEChML\n" +
+            "c3VwZXJzdHJvbmcxEDAOBgNVBAsTB1Vua25vd24xEDAOBgNVBAMTB1Vua25vd24w\n" +
+            "HhcNMjMwNDIwMTQzNDQ1WhcNMjMwNzE5MTQzNDQ1WjBrMQswCQYDVQQGEwJrbzEQ\n" +
+            "MA4GA1UECBMHVW5rbm93bjEQMA4GA1UEBxMHVW5rbm93bjEUMBIGA1UEChMLc3Vw\n" +
+            "ZXJzdHJvbmcxEDAOBgNVBAsTB1Vua25vd24xEDAOBgNVBAMTB1Vua25vd24wggEi\n" +
+            "MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC/clu6ODehkWJDXt/pCvnEya/z\n" +
+            "wgpe9RHR8sWIjbbuq2xEl5Swy5fcND03LM97nr2I1UsXtez7p5iD+iQLSPzLroRy\n" +
+            "GjVfvNoDq2s+WCQ50RNr+Kc09I81pfARsXLM2kKwPYkBKu4y6h8OtE2cd1KUa6nn\n" +
+            "065RFUJyvshpRUazXOC0qjhggTv4gBfsANf/BbkyE8ERvm0Bm/mYXaoQeivPCgj5\n" +
+            "hnR2VGL+vN7C0Z/xeRKE5UEO4FSC8fDLpJmficnywUX8pyWhTyQaBCnOO8bmwdTV\n" +
+            "XkPh/ggzakvT4NRTgxRafloR/kfBTE8/BsQ0aW15p5/DA+i3w2jL3EjTtYWNAgMB\n" +
+            "AAGjITAfMB0GA1UdDgQWBBTNoKmYI+nGLCFmX84IZcQ7vTnCyDANBgkqhkiG9w0B\n" +
+            "AQsFAAOCAQEAY9mLgta2zmrAJQiSaLsA3/8anK91yNho+0l/N1ikfDd4sLmFt073\n" +
+            "027CTlRNHtDovpdnvN10XyOpu9xE52DSwPPCluQsNYdyOvNnf53IEC+MjTpOnBiQ\n" +
+            "XVkP+932BlAQxYOqKLsdj9Sc3o+HRF6bIfSzMgYwrhE5QJgkA5Fm59ZR3I/Elw5b\n" +
+            "4yCJrIh69B0YEM+kUKde+7Ttkm6qP99WnKfdnhK4fyvt1EYu9QpR3xz0XE81dpnW\n" +
+            "4fV1k87KQz/yskpkPbMxkzv2kiRkZLTYdsna89UacwMYqskEUV9xO70TVPLlJ7ft\n" +
+            "uLUn8kacAAOjOtv7e2ANAQVY6XZuBNnsIQ==\n" +
             "-----END CERTIFICATE-----"
 
 

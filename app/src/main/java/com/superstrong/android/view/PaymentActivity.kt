@@ -142,7 +142,9 @@ class PaymentActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val amount = s.toString().toDouble()
+                var amount = s.toString().toDoubleOrNull()
+                if(amount == null)
+                    amount = 0.0
                 paymentVModel.sendamount.value = amount
                 //paymentVModel.sendamount.value = s.toString().toDouble()
 
